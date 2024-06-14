@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeeLog | A New Generation Blogging Platform</title>
+    <title>BeeLog</title>
 </head>
 <body>
-    <div class="page__wrapper">
-        <h2>BeeLog</h2>
-    </div>
+    <%- include('partials/header.ejs')  %>
+    <h1>BeeLog <%= locals.title %></h1>
+    <form action="api/v1/auth/login" method="post">
+        <input type="text" name="email" id="email">
+        <br>
+        <input type="password" name="password" id="password">
+        <br>
+        <input type="submit" value="submit">
+    </form>
+    <%- include('partials/footer.ejs')  %>
 </body>
 </html>
