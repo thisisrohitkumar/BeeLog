@@ -4,7 +4,7 @@ const { verifyToken } = require("../services/auth.service");
 const getAllBlogs = async (req, res) => {
   try {
     const blogs = await Blog.find({}).sort([["createdAt", -1]]);
-    return res.status(200).send(blogs);
+    return res.render('blogs', {blogs});
   } catch (error) {}
 };
 

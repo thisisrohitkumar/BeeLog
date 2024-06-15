@@ -1,7 +1,7 @@
 const checkAuthenticity = (req, res, next) => {
     const token = req.cookies['jwt'];
     if(token){
-        return res.send('first logout')
+        return res.redirect('/')
     }
     return next();
 }
@@ -9,7 +9,7 @@ const checkAuthenticity = (req, res, next) => {
 const checkIfUserLoggedIn = (req, res, next) => {
     const token = req.cookies['jwt'];
     if(!token){
-        return res.send('first login')
+        return res.redirect('/login')
     }
     return next();
 }

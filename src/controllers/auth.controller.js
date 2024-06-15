@@ -7,19 +7,19 @@ const handleUserLogin = async (req, res) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    return res.status(401).send("Email not exist");
+    return res.render("login", { msg: "Email does not exists" });
   } else if (!(await matchPassword(password, user.password))) {
-    return res.status(401).send("invalid password");
+    return res.render("login", { msg: "Invalid Password" });
   } else {
     const token = await generateToken(user);
-    return res.cookie("jwt", token).send("Login Success");
+    return res.cookie('jwt', token).redirect("/");
   }
 };
 const handleUserSignup = async (req, res) => {
   const { name, email, password } = req.body;
   const isExistingUser = await User.findOne({ email });
   if (isExistingUser) {
-    return res.status(401).send("User already exists");
+    return res.render("signup", { msg: "Email already exists" });
   } else {
     try {
       const hashedPassword = await hashPassword(password);
@@ -30,15 +30,15 @@ const handleUserSignup = async (req, res) => {
         password: hashedPassword,
       });
 
-      return res.status(201).send("Signup Success, plz login");
+      return res.render("login", { msg: "Signup success, plz login" });
     } catch (error) {
-      return res.status(401).send("Failed to signup");
+      return res.render("signup", { msg: "Failed, Try again!" });
     }
   }
 };
 
 const handleUserLogout = (req, res) => {
-  return res.clearCookie("jwt").send("logout success");
+  return res.clearCookie('jwt').render("login", { msg: "Logout Success" });
 };
 
 module.exports = {

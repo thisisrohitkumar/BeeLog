@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= locals.title %></title>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <% if(!locals.user){ %>
+        <li><a href="/signup">Signup</a></li>
+        <li><a href="/login">Login</a></li>
+        <% }else{ %>
+        <li><a href="/dashboard">Profile - <%= locals.user.name  %></a></li>
+        <li><a href="/auth/logout">Logout</a></li>
+        <% } %>
+      </ul>
+    </nav>
+  </body>
+</html>

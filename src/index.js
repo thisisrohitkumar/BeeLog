@@ -9,6 +9,7 @@ const userRoute = require('./routes/user.route')
 const authRoute = require('./routes/auth.route')
 const blogRoute = require('./routes/blog.route')
 const commentRoute = require('./routes/comment.route')
+const viewRoute = require('./routes/view.route')
 
 // Middlewares
 app.use(express.json());
@@ -19,6 +20,7 @@ app.use('/users', userRoute)
 app.use('/auth', authRoute)
 app.use('/blogs', blogRoute)
 app.use('/comments', commentRoute)
+app.use('/', viewRoute)
 
 // Set EJS as view engine
 app.set("view engine", "ejs");
