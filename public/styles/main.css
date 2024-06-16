@@ -53,7 +53,36 @@ nav ul{
 
 nav ul li{
     font-size: 1.2rem;
-}   
+}  
+
+.dropdown{
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown ul{
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #ffffff;
+    position: absolute;
+    right: -15px;
+    width: inherit;
+    padding-top: 10px;
+}
+
+.dropdown ul li{
+    padding: 8px 16px;
+    text-align: right;
+}
+
+.dropdown ul li:hover{
+    background-color: gray;
+}
+
+.dropdown:hover ul{
+    display: flex;
+}
 
 .blogs{
     width: 80%;

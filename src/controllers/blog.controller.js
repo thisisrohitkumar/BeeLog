@@ -42,14 +42,14 @@ const createNewBlog = async (req, res) => {
       thumbnail = `/uploads/${req.file.filename}`;
     }
 
-    await Blog.create({
+    const newBlog = await Blog.create({
       title,
       content,
       thumbnail,
       author: user.id,
     });
 
-    return res.render("home", { msg: "blog created success" });
+    return res.redirect(`/blogs/${newBlog._id}`);
   } catch (error) {
     console.log(error);
     return res.send("Internal server error");

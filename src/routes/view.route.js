@@ -29,7 +29,6 @@ router.get("/dashboard", checkIfUserLoggedIn, async (req, res) => {
     }
     const user = await verifyToken(token);
     const blogs = await Blog.find({author: user.id})
-    console.log(blogs.length)
     return res.render("dashboard", {user, blogs});
 });
 

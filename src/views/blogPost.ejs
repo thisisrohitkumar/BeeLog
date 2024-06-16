@@ -1,29 +1,28 @@
-<%- include('./partials/header.ejs', {title: locals.blog.title, user: locals.user})
-%>
+<%- include('./partials/header.ejs', {title: locals.blog.title, user:
+locals.user}) %>
 
 <div>
-  <img src="<%= locals.blog.thumbnail %>" alt="thumbnail" width="300"/>
+  <img src="<%= locals.blog.thumbnail %>" alt="thumbnail" width="300" />
   <h4><%= locals.blog.title %></h4>
   <pre><%= locals.blog.content %></pre>
 </div>
 
 <div>
-    <h5>Comments (<%= locals.comments.length %>)</h5>
-    <% locals.comments.forEach(fcomment => { %>
-        <p><%= fcomment.comment %></p>
-    <% }) %>
+  <h5>Comments (<%= locals.comments.length %>)</h5>
+  <% locals.comments.forEach(fcomment => { %>
+  <p><%= fcomment.comment %></p>
+  <% }) %>
 </div>
 
+<% if(locals.user){ %>
 <div>
-    <form action="/comments" method="post">
-        <label for="comment">Write your comment</label>
-        <br>
-        <textarea name="comment" rows="1" required></textarea>
-        <input type="hidden" name="blogId" value="<%= blog._id %>">
-        <br>
-        <button type="submit">Post Comment</button>
-    </form>
+  <form action="/comments" method="post">
+    <label for="comment">Write your comment</label>
+    <br />
+    <textarea name="comment" rows="1" required></textarea>
+    <input type="hidden" name="blogId" value="<%= blog._id %>" />
+    <br />
+    <button type="submit">Post Comment</button>
+  </form>
 </div>
-
-
-<%- include('./partials/footer.ejs') %>
+<% } %> <%- include('./partials/footer.ejs') %>
