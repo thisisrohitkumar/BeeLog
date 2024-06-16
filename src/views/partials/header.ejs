@@ -4,21 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= locals.title %></title>
+    <link rel="stylesheet" href="/styles/main.css" />
+
+    <!-- google fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <% if(!locals.user){ %>
-        <li><a href="/signup">Signup</a></li>
-        <li><a href="/login">Login</a></li>
-        <% }else{ %>
+    <header>
+      <a href="/"><div class="logo__box">
+        <img src="/images/logo.gif" alt="logo">
+        BEELOG
+      </div></a>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <% if(!locals.user){ %>
+          <li><a href="/signup">Signup</a></li>
+          <li><a href="/login">Login</a></li>
+          <% }else{ %>
           <li><a href="/blogs">View Blogs</a></li>
           <li><a href="/addBlog">Add Blog</a></li>
-        <li><a href="/dashboard">Profile - <%= locals.user.name  %></a></li>
-        <li><a href="/auth/logout">Logout</a></li>
-        <% } %>
-      </ul>
-    </nav>
-  </body>
-</html>
+          <li><a href="/dashboard">Profile - <%= locals.user.name %></a></li>
+          <li><a href="/auth/logout">Logout</a></li>
+          <% } %>
+        </ul>
+      </nav>
+    </header>
