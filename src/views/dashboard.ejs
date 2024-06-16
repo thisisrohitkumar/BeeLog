@@ -1,2 +1,12 @@
 <%- include('./partials/header.ejs', {title: 'Dashboard', user: locals.user}) %>
 <h1>Dashboard</h1>
+
+<h4>My Blogs (<%= locals.blogs.length %>)</h4>
+<% blogs.forEach(blog => { %>
+<div>
+  <img src="<%= blog.thumbnail %>" alt="thumbnail" width="300" />
+  <h4><%= blog.title %></h4>
+  <p><%= blog.content %></p>
+  <a href="/blogs/<%= blog._id%>">Read Blog</a>
+</div>
+<% }); %>

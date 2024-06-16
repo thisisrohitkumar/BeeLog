@@ -22,7 +22,7 @@ const createNewComment = async (req, res) => {
         userId: user.id,
         comment,
     })
-    return res.send('comment success')
+    return res.redirect(`/blogs/${blogId}`)
   } catch (error) {
     console.log(error)
     return res.send('internal server error')

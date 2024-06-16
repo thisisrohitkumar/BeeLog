@@ -2,8 +2,9 @@
 <h1>Blogs</h1>
 <% locals.blogs.forEach(blog => { %>
 <div>
-  <img src="<%= blog.thumbnail %>" alt="thumbnail" />
+  <img src="<%= blog.thumbnail %>" alt="thumbnail" width="300"/>
   <h4><%= blog.title %></h4>
   <p><%= blog.content %></p>
+  <a href="/blogs/<%= blog._id%>">Read Blog</a>
 </div>
 <% }); %>
