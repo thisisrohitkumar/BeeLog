@@ -91,7 +91,7 @@ nav ul li{
     width: 80%;
     margin: 50px auto;
     display: grid;
-    grid-template-columns: repeat(3, 350px);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-template-rows: auto;
     gap: 50px;
     place-content: center;
@@ -102,7 +102,8 @@ nav ul li{
     padding: 15px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: flex-start;
     gap: 10px;
     border: 1px solid #000000;
 }
@@ -110,6 +111,7 @@ nav ul li{
 .blog img{
     width: 100%;
     height: 200px;
+    object-fit: cover;
 }
 
 .blog h4{
@@ -301,6 +303,7 @@ nav ul li{
     width: 350px;
     height: 200px;
     display: none;
+    object-fit: cover;
 }
 
 /* Blog Details Page styles  */
@@ -335,6 +338,15 @@ nav ul li{
 }
 
 .blog__details pre{
+    width: 100%;
+    text-align: justify;
+    text-justify: auto;
+    white-space: pre-wrap;       /* CSS3 */
+    white-space: -moz-pre-wrap;  /* Mozilla */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    overflow-wrap: break-word;  
     padding: 20px 30px;
     font-size: 1.2rem;
     font-family: "Montserrat", sans-serif;
