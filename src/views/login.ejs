@@ -1,13 +1,14 @@
 <%- include('./partials/header.ejs', {title: 'Login'}) %>
-<h1>Login</h1>
-<p><%= locals.msg %></p>
-<form action="/auth/login" method="post">
-    <br>
+<div class="auth__container">
+  <form action="/auth/login" method="post" class="auth__form">
+    <h1>Welcome Back!</h1>
+    <small><%= locals.msg %></small>
     <label for="email">Email</label>
-    <input type="email" name="email" id="email" required>
-    <br>
+    <input type="email" name="email" id="email" required placeholder="Email (Required)"/>
     <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <br>
+    <input type="password" name="password" id="password" required placeholder="Password (Required)"/>
+    <p>Reset Password?</p>
     <button type="submit">Login</button>
-</form>
+    <a href="/signup" class="auth__link">Create an Account</a>
+  </form>
+</div>
