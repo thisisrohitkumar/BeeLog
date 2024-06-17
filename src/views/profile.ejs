@@ -1,0 +1,32 @@
+<%- include('./partials/header.ejs', {title: 'Profile', user: locals.user}) %>
+
+<div class="profile__container">
+  <div class="profile__box">
+    <h3>Profile</h3>
+    <img src="<%= locals.userDetails.dp  %>" alt="" />
+    <label for="name">Name</label>
+    <input
+      type="text"
+      name="name"
+      id="name"
+      value="<%= locals.userDetails.name  %>"
+      placeholder="Edit Name"
+      disabled
+    />
+    <label for="email">Email</label>
+    <input
+      type="email"
+      name="email"
+      id="email"
+      value="<%= locals.userDetails.email  %>"
+      disabled
+    />
+    <button>Edit Profile</button>
+    <small
+      >Member Since : <%= new
+      Date(locals.userDetails.createdAt).toLocaleDateString() %></small
+    >
+  </div>
+</div>
+
+<%- include('./partials/footer.ejs') %>

@@ -18,6 +18,10 @@ const userSchema = new Schema({
         type: String,
         enum: ["user", "admin"],
         default: "user"
+    },
+    dp:{
+        type: String,
+        default: "/images/default_dp.png"
     }
 }, { timestamps : true})
 

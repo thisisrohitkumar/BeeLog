@@ -68,13 +68,14 @@ nav ul li{
     background-color: #ffffff;
     position: absolute;
     right: -15px;
-    width: inherit;
     padding-top: 10px;
 }
 
 .dropdown ul li{
     padding: 8px 16px;
     text-align: right;
+    width: fit-content;
+    min-width: 150px;
 }
 
 .dropdown ul li:hover{
@@ -327,6 +328,7 @@ nav ul li{
 .blog__details img{
     width: 100%;
     height: 500px;
+    object-fit: cover;
 }
 
 .blog__details h4{
@@ -429,4 +431,94 @@ nav ul li{
     margin-top: 10px;
     font-size: 1rem;
     cursor: pointer;
+}
+
+/* Dashboard page styles  */
+.dashboard__container{
+    padding-top: 50px;
+}
+
+.dashboard__container h3{
+    width: 80%;
+    margin: auto;
+}
+
+/* Profile page styles  */
+
+.profile__container{
+    width: 100%;
+    height: calc(100vh - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile__box{
+    width: 400px;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+}
+
+.profile__box h3{
+    font-size: 1.5rem;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.profile__box h3 em{
+    font-weight: 400;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.profile__box img{
+    width: 100px;
+    height: 100px;
+    margin: auto;
+}
+
+.profile__box label{
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+.profile__box input{
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.profile__box small{
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    margin-block: 10px;
+}
+
+.profile__box button{
+    display: block;
+    width: 100%;
+    background-color: #F4BD20;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+footer{
+    width: 100%;
+    background-color: #F4BD20;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
