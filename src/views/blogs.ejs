@@ -4,8 +4,10 @@
   <% locals.blogs.forEach(blog => { %>
     <div class="blog">
       <img src="<%= blog.thumbnail %>" alt="thumbnail"/>
+      <small class="author"><strong>Author :</strong> <%= blog.author.name %></small>
       <h4><%= blog.title %></h4>
       <a href="/blogs/<%= blog._id%>">Read Blog</a>
+      <small>Posted on : <%= new Date(blog.createdAt).toLocaleString() %></small>
     </div>
     <% }); %>
 </div>

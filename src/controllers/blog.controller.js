@@ -8,7 +8,7 @@ const getAllBlogs = async (req, res) => {
   const token = req.cookies["jwt"];
   const user = await verifyToken(token);
   try {
-    const blogs = await Blog.find({}).sort([["createdAt", -1]]);
+    const blogs = await Blog.find({}).populate('author').sort([["createdAt", -1]]);
     return res.render("blogs", { blogs, user });
   } catch (error) {}
 };
@@ -18,8 +18,8 @@ const getBlogById = async (req, res) => {
   const token = req.cookies["jwt"];
   const user = await verifyToken(token);
   try {
-    const blog = await Blog.findById({ _id: id });
-    const comments = await Comment.find({ blogId: id });
+    const blog = await Blog.findById({ _id: id }).populate('author');
+    const comments = await Comment.find({ blogId: id }).populate('userId');
 
     if (!blog) {
       return res.send("blog not found");

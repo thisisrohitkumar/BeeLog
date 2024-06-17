@@ -1,17 +1,22 @@
 <%- include('./partials/header.ejs', {title: 'Dashboard', user: locals.user}) %>
-<h1>Dashboard</h1>
 
-<h4>My Blogs (<%= locals.blogs.length %>)</h4>
-<div class="blogs">
-  <% blogs.forEach(blog => { %>
+<div class="dashboard__container">
+  <h4>My Blogs (<%= locals.blogs.length %>)</h4>
+  <div class="blogs">
+    <% locals.blogs.forEach(blog => { %>
     <div class="blog">
-      <img src="<%= blog.thumbnail %>" alt="thumbnail" width="300" />
+      <img src="<%= blog.thumbnail %>" alt="thumbnail" />
+      <small class="author"
+        ><strong>Author :</strong> <%= blog.author.name %></small
+      >
       <h4><%= blog.title %></h4>
-      <p><%= blog.content %></p>
       <a href="/blogs/<%= blog._id%>">Read Blog</a>
+      <small
+        >Posted on : <%= new Date(blog.createdAt).toLocaleString() %></small
+      >
     </div>
     <% }); %>
+  </div>
 </div>
-
 
 <%- include('./partials/footer.ejs') %>

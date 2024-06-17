@@ -28,7 +28,7 @@ router.get("/dashboard", checkIfUserLoggedIn, async (req, res) => {
       return res.render("home");
     }
     const user = await verifyToken(token);
-    const blogs = await Blog.find({author: user.id})
+    const blogs = await Blog.find({author: user.id}).populate('author').sort([["createdAt", -1]])
     return res.render("dashboard", {user, blogs});
 });
 
