@@ -107,6 +107,7 @@ nav ul li{
     align-items: flex-start;
     gap: 10px;
     border: 1px solid #000000;
+    position: relative;
 }
 
 .blog img{
@@ -441,6 +442,20 @@ nav ul li{
 .dashboard__container h3{
     width: 80%;
     margin: auto;
+}
+
+.dashboard__container .blog form{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.delete__btn{
+    background-color: red;
+    border: none;
+    padding: 8px 16px;
+    color: #ffffff;
+    cursor: pointer;
 }
 
 /* Profile page styles  */

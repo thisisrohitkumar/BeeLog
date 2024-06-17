@@ -22,6 +22,10 @@ const userSchema = new Schema({
     dp:{
         type: String,
         default: "/images/default_dp.png"
+    },
+    isVerified:{
+        type: Boolean,
+        default: false
     }
 }, { timestamps : true})
 

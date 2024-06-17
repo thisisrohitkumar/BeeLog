@@ -1,0 +1,14 @@
+<%- include('./partials/header.ejs', {title: 'Login'}) %>
+<div class="auth__container">
+  <form action="/otp" method="post" class="auth__form">
+    <h1>Verify Email</h1>
+    <small><%= locals.msg %></small>
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" required placeholder="Email (Required)" value="<%= locals.user.email %>"/>
+    <p>Resend OTP</p>
+    <button type="submit">Send OTP</button>
+    <a href="/signup" class="auth__link">Create an Account</a>
+  </form>
+</div>
+
+<%- include('./partials/footer.ejs') %>
