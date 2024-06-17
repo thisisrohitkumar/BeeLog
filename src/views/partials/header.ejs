@@ -25,12 +25,12 @@
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/blogs">View Blogs</a></li>
+          <li><a href="/blogs">Blogs</a></li>
           <% if(!locals.user){ %>
           <li><a href="/signup">Signup</a></li>
           <li><a href="/login">Login</a></li>
           <% }else{ %>
-          <li><a href="/addBlog">Add Blog</a></li>
+          <li><a href="/addBlog">Write Blog</a></li>
           <li class="dropdown">
             <%= locals.user.name %>
             <ul>
