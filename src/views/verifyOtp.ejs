@@ -1,15 +1,23 @@
-<%- include('./partials/header.ejs', {title: 'Verify Email'}) %>
-<div class="auth__container">
-  <form action="/otp/verifyOtp" method="post" class="auth__form">
-    <h1>Verify Email</h1>
-    <small><%= locals.msg %></small>
-    <input type="hidden" name="email" value="<%= locals.email %>" />
-    <label for="otp">Enter OTP</label>
-    <input type="text" name="otp" id="otp" required placeholder="OTP
-    (Required)"/>
-    <button type="submit">Verify OTP</button>
-    <a href="/verify" class="auth__link">Resend OTP</a>
-  </form>
-</div>
+<div class="page__wrapper">
+  <%- include('./partials/header.ejs', {title: 'Verify Email'}) %>
+  <div class="auth__container">
+    <form action="/otp/verifyOtp" method="post" class="auth__form">
+      <h1>Verify Email</h1>
+      <small><%= locals.msg %></small>
+      <input type="hidden" name="email" value="<%= locals.email %>" />
+      <label for="otp">Enter OTP</label>
+      <input
+        type="text"
+        name="otp"
+        id="otp"
+        required
+        placeholder="OTP
+    (Required)"
+      />
+      <button type="submit">Verify OTP</button>
+      <a href="/verify" class="auth__link">Resend OTP</a>
+    </form>
+  </div>
 
-<%- include('./partials/footer.ejs') %>
+  <%- include('./partials/footer.ejs') %>
+</div>

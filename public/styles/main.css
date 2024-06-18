@@ -10,10 +10,11 @@ html{
 
 body{
     width: 100vw;
-    height: auto;
+    height: 100vh;
     background-color: #f7f7f7;
     font-family: "Montserrat", sans-serif;
     overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 a{
@@ -21,10 +22,21 @@ a{
     color: #000000;
 }
 
+.page__wrapper{
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding-top: 80px;
+}
+
 /* Header Styles  */
 header{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    z-index: 9;
     width: 100%;
-    padding: 0px 50px;
+    padding: 0 50px;
     background-color: #ffffff;
     display: flex;
     flex-direction: row;
@@ -55,6 +67,14 @@ nav ul{
 nav ul li{
     font-size: 1.2rem;
 }  
+
+.mobile__nav{
+    display: none;
+}
+
+#mobile__nav__trigger{
+    display: none;
+}
 
 .dropdown{
     position: relative;
@@ -208,7 +228,7 @@ nav ul li{
 
 /* Home page styles  */
 .home__container{
-    height: calc(100vh - 100px);
+    height: calc(100vh - 70px);
     width: 100vw;
     background-color: #f7f7f7;
     display: flex;
@@ -221,6 +241,7 @@ nav ul li{
 
 .home__container h2{
     font-size: 3rem;
+    text-align: center;
 }
 
 .home__container h2 em{
@@ -450,19 +471,11 @@ nav ul li{
     top: 0;
 }
 
-.delete__btn{
-    background-color: red;
-    border: none;
-    padding: 8px 16px;
-    color: #ffffff;
-    cursor: pointer;
-}
-
 /* Profile page styles  */
 
 .profile__container{
     width: 100%;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 70px);
     display: flex;
     justify-content: center;
     align-items: center;

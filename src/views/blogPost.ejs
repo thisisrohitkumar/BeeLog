@@ -1,52 +1,55 @@
-<%- include('./partials/header.ejs', {title: locals.blog.title, user:
-locals.user}) %>
-
-<div class="blog__details__container">
-  <div class="blog__details">
-    <img src="<%= locals.blog.thumbnail %>" alt="thumbnail" />
-    <h4><%= locals.blog.title %></h4>
-    <pre><%= locals.blog.content %></pre>
-    <small>
-      <strong>Posted on :</strong>
-      <%= new Date(locals.blog.createdAt).toLocaleString() %></small
-    >
-    <small><strong>Author :</strong> <%= locals.blog.author.name %></small>
-  </div>
-
-  <div class="comment__details">
-    <h5>Comments (<%= locals.comments.length %>)</h5>
-    <% locals.comments.forEach(pcomment => { %>
-    <div class="comment">
-      <div class="comment__user__img">
-        <img
-          src="<%= pcomment.userId.dp %>"
-          alt="user"
-        />
+<div class="page__wrapper">
+  <%- include('./partials/header.ejs', {title: locals.blog.title, user:
+    locals.user}) %>
+    
+    <div class="blog__details__container">
+      <div class="blog__details">
+        <img src="<%= locals.blog.thumbnail %>" alt="thumbnail" />
+        <h4><%= locals.blog.title %></h4>
+        <pre><%= locals.blog.content %></pre>
+        <small>
+          <strong>Posted on :</strong>
+          <%= new Date(locals.blog.createdAt).toLocaleString() %></small
+        >
+        <small><strong>Author :</strong> <%= locals.blog.author.name %></small>
       </div>
-      <div>
-        <div class="comment__user">
-          <%= pcomment.userId.name %><em><%= new Date(pcomment.createdAt).toLocaleString() %></em>
+    
+      <div class="comment__details">
+        <h5>Comments (<%= locals.comments.length %>)</h5>
+        <% locals.comments.forEach(pcomment => { %>
+        <div class="comment">
+          <div class="comment__user__img">
+            <img
+              src="<%= pcomment.userId.dp %>"
+              alt="user"
+            />
+          </div>
+          <div>
+            <div class="comment__user">
+              <%= pcomment.userId.name %><em><%= new Date(pcomment.createdAt).toLocaleString() %></em>
+            </div>
+            <div class="comment__text"><%= pcomment.comment %></div>
+          </div>
         </div>
-        <div class="comment__text"><%= pcomment.comment %></div>
+        <% }) %>
       </div>
+    
+      <% if(locals.user){ %>
+      <div class="comment__form">
+        <form action="/comments" method="post">
+          <label for="comment">Write your comment</label>
+          <textarea
+            name="comment"
+            rows="1"
+            required
+            placeholder="Write your comment..."
+          ></textarea>
+          <input type="hidden" name="blogId" value="<%= blog._id %>" />
+          <button type="submit">Post Comment</button>
+        </form>
+      </div>
+      <% } %>
     </div>
-    <% }) %>
-  </div>
-
-  <% if(locals.user){ %>
-  <div class="comment__form">
-    <form action="/comments" method="post">
-      <label for="comment">Write your comment</label>
-      <textarea
-        name="comment"
-        rows="1"
-        required
-        placeholder="Write your comment..."
-      ></textarea>
-      <input type="hidden" name="blogId" value="<%= blog._id %>" />
-      <button type="submit">Post Comment</button>
-    </form>
-  </div>
-  <% } %>
+    <%- include('./partials/footer.ejs') %>
+    
 </div>
-<%- include('./partials/footer.ejs') %>

@@ -1,7 +1,9 @@
-<%- include('./partials/header.ejs', {title: 'Home', user: locals.user}) %>
-<%= locals.msg %>
-<div class="home__container">
+<div class="page__wrapper">
+  <%- include('./partials/header.ejs', {title: 'Home', user: locals.user}) %>
+  <div class="home__container">
+    <%= locals.msg %>
     <h2>Learn Something New <em> Everyday</em> .</h2>
     <a href="/blogs" class="read__blogs">Read Blogs</a>
+  </div>
+  <%- include('./partials/footer.ejs') %>
 </div>
-<%- include('./partials/footer.ejs') %>

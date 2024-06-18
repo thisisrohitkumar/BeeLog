@@ -40,6 +40,20 @@
         });
       });
     });
+
+    const mobile__nav__trigger = document.querySelector('#mobile__nav__trigger');
+
+    mobile__nav__trigger.addEventListener('click', () => {
+      const mobile__nav = document.querySelector('.mobile__nav');
+      mobile__nav.style.left = "0";
+    });
+
+    const close__mobile__nav = document.querySelector('.close__nav');
+
+    close__mobile__nav.addEventListener('click', () => {
+  const mobile__nav = document.querySelector('.mobile__nav');
+  mobile__nav.style.left = "100%";
+});
 </script>
 </body>
 </html>
