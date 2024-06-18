@@ -10,7 +10,9 @@ const handleUserLogin = async (req, res) => {
     return res.render("login", { msg: "Email does not exists" });
   } else if (!(await matchPassword(password, user.password))) {
     return res.render("login", { msg: "Invalid Password" });
-  } else {
+  } else if(!user.isVerified){
+    return res.render("verify", { msg: "Verification Pending", email });
+  }else {
     const token = await generateToken(user);
     return res.cookie('jwt', token).redirect("/");
   }
