@@ -24,13 +24,13 @@ const handleUserSignup = async (req, res) => {
     try {
       const hashedPassword = await hashPassword(password);
 
-      await User.create({
+      const newUser = await User.create({
         name,
         email,
         password: hashedPassword,
       });
 
-      return res.render("login", { msg: "Signup success, plz login" });
+      return res.render("verify", { email: newUser.email });
     } catch (error) {
       return res.render("signup", { msg: "Failed, Try again!" });
     }

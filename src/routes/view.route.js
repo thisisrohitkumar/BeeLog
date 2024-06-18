@@ -19,9 +19,14 @@ router.get("/signup", checkAuthenticity, (req, res) => {
   return res.render("signup");
 });
 
+router.get("/verify", checkAuthenticity, (req, res) => {
+  return res.render("verify");
+});
+
 router.get("/login", checkAuthenticity, (req, res) => {
   return res.render("login");
 });
+
 
 router.get("/dashboard", checkIfUserLoggedIn, async (req, res) => {
     const token = req.cookies["jwt"];
