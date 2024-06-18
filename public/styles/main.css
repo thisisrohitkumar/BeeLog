@@ -155,7 +155,8 @@ nav ul li{
 /* Signup/login form style  */
 .auth__container{
     width: 100%;
-    height: calc(100vh - 70px);
+    height: auto;
+    padding-block: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -1,7 +1,7 @@
 /* For Mobile Screens - Portrait */
 @media screen and (max-width: 480px) and (orientation: portrait) {
   header {
-    padding: 0 20px;
+    padding: 8px 20px;
   }
   .logo__box {
     gap: 15px;
@@ -64,27 +64,31 @@
     height: 250px;
   }
 
-  .blog__details h4{
+  .blog__details h4 {
     padding: 20px;
   }
 
-  .blog__details pre{
+  .blog__details pre {
     padding: 20px;
   }
 
-  .blog__details small{
+  .blog__details small {
     display: block;
     margin-left: 0;
     margin-bottom: 20px;
     width: fit-content;
   }
 
-  .comment__details{
+  .comment__details {
     padding-inline: 20px;
-}
+  }
 
-.profile__box{
+  .profile__box {
     width: 350px;
+  }
+
+  .add__blog__container .preview{
+    width: 100%;
 }
 }
 
