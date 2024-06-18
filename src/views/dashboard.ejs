@@ -2,7 +2,7 @@
   <%- include('./partials/header.ejs', {title: 'Dashboard', user: locals.user}) %>
 
 <div class="dashboard__container">
-  <h3>My Blogs (<%= locals.blogs.length %>)</h3>
+  <h3>Blogs Published (<%= locals.blogs.length %>)</h3>
   <div class="blogs">
     <% locals.blogs.forEach(blog => { %>
     <div class="blog">

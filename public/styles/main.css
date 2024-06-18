@@ -408,6 +408,10 @@ nav ul li{
     height: 50px;
 }
 
+.comment__user__text{
+    width: calc(100% - 70px);
+}
+
 .comment__user__img img{
     width: 100%;
     height: 100%;
@@ -417,6 +421,10 @@ nav ul li{
     font-size: 1rem;
     font-weight: 500;
     margin-bottom: 5px;
+    word-wrap: break-word;
+}
+.comment__text{
+    word-wrap: break-word;
 }
 
 .comment__user em{
