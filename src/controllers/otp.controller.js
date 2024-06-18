@@ -31,17 +31,17 @@ const handleVerifyOtp = async (req, res) => {
     const otpRecord = await Otp.findOne({ email, otp });
 
     if (!otpRecord) {
-      return res.status(400).render('verifyOtp', { msg: "Invalid OTP" });
+      return res.status(400).render('verifyOtp', { msg: "~ Invalid OTP ~" });
     }
 
     if (otpRecord.expiresAt < new Date()) {
-      return res.status(400).render('verifyOtp',{ msg: "OTP expired" });
+      return res.status(400).render('verifyOtp',{ msg: "~ OTP expired ~" });
     }
 
     await User.updateOne({ email }, { isVerified: true });
     await Otp.deleteOne({ email, otp });
 
-    res.status(200).render('login', { msg: "Account Verified, Please Login!" });
+    res.status(200).render('login', { msg: "~ Account Verified, Please Login! ~" });
   } catch (error) {
     console.error("Error verifying OTP:", error);
     res.status(500).json({ msg: "Error verifying OTP", error: error.message });
