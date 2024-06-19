@@ -7,10 +7,11 @@
       <% locals.bookmarks.forEach(bookmark => { %>
       <div class="blog">
         <img src="<%= bookmark.blogId.thumbnail %>" alt="thumbnail" />
-        <small class="author"
-          ><strong>Author :</strong> <%#= blog.author.name %></small
-        >
+        <small class="category"><%= bookmark.blogId.category %></small>
         <h4><%= bookmark.blogId.title %></h4>
+        <small class="author"
+          ><strong>Author :</strong> <%= bookmark.blogId.author.name %></small
+        >
         <a href="/blogs/<%= bookmark.blogId._id%>">Read Blog</a>
         <small
           >Posted on : <%= new Date(bookmark.blogId.createdAt).toLocaleString() %></small

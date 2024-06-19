@@ -10,6 +10,10 @@ const blogSchema = new Schema({
         type: String,
         required: true
     },
+    category: {
+        type: String,
+        required: true
+    },
     thumbnail: {
         type: String,
         default: "/images/default_thumbnail.jpg"

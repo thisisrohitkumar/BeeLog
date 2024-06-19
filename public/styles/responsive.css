@@ -57,7 +57,6 @@
 
   .blog__details__container {
     width: 90%;
-    margin-top: 10px;
   }
 
   .blog__details img {
@@ -99,7 +98,96 @@
 
 /* For Tablet Screens - Portrait */
 @media screen and (min-width: 481px) and (max-width: 834px) and (orientation: portrait) {
-  /* CSS rules for tablet portrait */
+  
+  header {
+    padding: 8px 20px;
+  }
+  .logo__box {
+    gap: 15px;
+    font-size: 1.8rem;
+  }
+  .logo__box img {
+    width: 70px;
+  }
+  .nav__item {
+    display: none;
+  }
+  .mobile__nav {
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 100%;
+    z-index: 10;
+    background-color: #f7f7f7;
+  }
+
+  .mobile__nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+  .mobile__nav ul li {
+    font-size: 1.8rem;
+  }
+  .close__nav {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 2rem;
+  }
+  #mobile__nav__trigger {
+    font-size: 2rem;
+    display: block;
+  }
+
+  .home__container h2 {
+    font-size: 3.5rem;
+    line-height: 80px;
+    padding: 10px;
+  }
+
+  .blog__details__container {
+    width: 90%;
+  }
+
+  .blog__details img {
+    height: 250px;
+  }
+
+  .blog__details h4 {
+    padding: 20px;
+  }
+
+  .blog__details pre {
+    padding: 20px;
+  }
+
+  .blog__details small {
+    display: block;
+    margin-left: 0;
+    margin-bottom: 20px;
+    width: fit-content;
+  }
+
+  .comment__details {
+    padding-inline: 20px;
+  }
+
+  .profile__box {
+    width: 350px;
+  }
+
+  .add__blog__container .preview{
+    width: 100%;
+}
 }
 
 /* For Tablet Screens - Landscape */

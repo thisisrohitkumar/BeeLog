@@ -7,6 +7,56 @@
   <input type="text" name="title" required  placeholder="Title (Required)"/>
   <label for="content">Content</label>
   <textarea name="content" required placeholder="Write your thoughts here... (Required)"></textarea>
+  <label for="category">Category</label>
+  <select name="category" id="" required>
+    <option value="" selected disabled>Select Category</option>
+    <option value="technology">Technology</option>
+    <option value="science">Science</option>
+    <option value="health">Health</option>
+    <option value="travel">Travel</option>
+    <option value="food">Food</option>
+    <option value="fashion">Fashion</option>
+    <option value="lifestyle">Lifestyle</option>
+    <option value="finance">Finance</option>
+    <option value="business">Business</option>
+    <option value="education">Education</option>
+    <option value="entertainment">Entertainment</option>
+    <option value="sports">Sports</option>
+    <option value="politics">Politics</option>
+    <option value="news">News</option>
+    <option value="personal">Personal</option>
+    <option value="parenting">Parenting</option>
+    <option value="relationships">Relationships</option>
+    <option value="career">Career</option>
+    <option value="hobbies">Hobbies</option>
+    <option value="diy">DIY</option>
+    <option value="home">Home</option>
+    <option value="gardening">Gardening</option>
+    <option value="pets">Pets</option>
+    <option value="photography">Photography</option>
+    <option value="automotive">Automotive</option>
+    <option value="real-estate">Real Estate</option>
+    <option value="books">Books</option>
+    <option value="movies">Movies</option>
+    <option value="music">Music</option>
+    <option value="art">Art</option>
+    <option value="history">History</option>
+    <option value="religion">Religion</option>
+    <option value="spirituality">Spirituality</option>
+    <option value="gaming">Gaming</option>
+    <option value="fitness">Fitness</option>
+    <option value="environment">Environment</option>
+    <option value="psychology">Psychology</option>
+    <option value="self-improvement">Self-Improvement</option>
+    <option value="marketing">Marketing</option>
+    <option value="writing">Writing</option>
+    <option value="social-media">Social Media</option>
+    <option value="productivity">Productivity</option>
+    <option value="non-profit">Non-Profit</option>
+    <option value="events">Events</option>
+    <option value="miscellaneous">Miscellaneous</option>
+  </select>
+
   <label for="thumbnail">Thumbnail</label>
   <input type="file" name="thumbnail" accept="image/*" onchange="loadFile(event)"/>
   <img id="output" class="preview"/>

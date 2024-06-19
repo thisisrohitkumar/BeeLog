@@ -50,9 +50,15 @@ router.get("/bookmarks", checkIfUserLoggedIn, async (req, res) => {
   }
   const user = await verifyToken(token);
   const bookmarks = await Bookmark.find({ userId: user.id })
-    .populate("blogId")
+  .populate({
+    path: 'blogId',
+    populate: {
+      path: 'author',
+      model: 'User',
+      select: 'name'
+    }
+  })
     .sort([["createdAt", -1]]);
-    // console.log(bookmarks)
   return res.render("bookmarks", { user, bookmarks });
 });
 

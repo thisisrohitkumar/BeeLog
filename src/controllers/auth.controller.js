@@ -14,7 +14,7 @@ const handleUserLogin = async (req, res) => {
     return res.render("verify", { msg: "~ Verification Pending ~", email });
   }else {
     const token = await generateToken(user);
-    return res.cookie('jwt', token).redirect("/");
+    return res.cookie('jwt', token, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true }).redirect("/");
   }
 };
 const handleUserSignup = async (req, res) => {

@@ -36,7 +36,7 @@ const getBlogById = async (req, res) => {
 };
 
 const createNewBlog = async (req, res) => {
-  const { title, content } = req.body;
+  const { title, content, category } = req.body;
   const token = req.cookies["jwt"];
   const user = await verifyToken(token);
   try {
@@ -48,6 +48,7 @@ const createNewBlog = async (req, res) => {
     const newBlog = await Blog.create({
       title,
       content,
+      category,
       thumbnail,
       author: user.id,
     });
