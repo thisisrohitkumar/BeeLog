@@ -1,0 +1,25 @@
+<div class="page__wrapper">
+    <%- include('./partials/header.ejs', {title: 'Bookmarks', user: locals.user}) %>
+  
+  <div class="bookmarks__container">
+    <h3>Bookmarks (<%= locals.bookmarks.length %>)</h3>
+    <div class="blogs">
+      <% locals.bookmarks.forEach(bookmark => { %>
+      <div class="blog">
+        <img src="<%= bookmark.blogId.thumbnail %>" alt="thumbnail" />
+        <small class="author"
+          ><strong>Author :</strong> <%#= blog.author.name %></small
+        >
+        <h4><%= bookmark.blogId.title %></h4>
+        <a href="/blogs/<%= bookmark.blogId._id%>">Read Blog</a>
+        <small
+          >Posted on : <%= new Date(bookmark.blogId.createdAt).toLocaleString() %></small
+        >
+      </div>
+      <% }); %>
+    </div>
+  </div>
+  
+  <%- include('./partials/footer.ejs') %>
+  
+  </div>
