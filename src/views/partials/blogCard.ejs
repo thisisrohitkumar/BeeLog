@@ -1,0 +1,22 @@
+<div class="blog">
+  <form
+    action="/bookmarks"
+    method="post"
+    class="bookmark__form__2"
+    title="Bookmark"
+  >
+    <input type="hidden" name="blogId" value="<%= blog._id %>" />
+    <button type="submit"><i class="fa-solid fa-bookmark"></i></button>
+  </form>
+  <img src="<%= blog.thumbnail %>" alt="thumbnail" />
+  <small class="blog__category"
+    ><%= blog.category.charAt(0).toUpperCase() + blog.category.slice(1)
+    %></small
+  >
+  <h4><%= blog.title %></h4>
+  <small class="author"
+    ><strong>Author :</strong> <%= blog.author.name %></small
+  >
+  <a href="/blogs/<%= blog._id%>">Read Blog</a>
+  <small>Posted on : <%= new Date(blog.createdAt).toLocaleString() %></small>
+</div>

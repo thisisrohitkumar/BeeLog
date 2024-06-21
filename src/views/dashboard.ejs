@@ -5,23 +5,8 @@
   <div class="dashboard__container">
     <h3>Blogs Published (<%= locals.blogs.length %>)</h3>
     <div class="blogs">
-      <% locals.blogs.forEach(blog => { %>
-      <div class="blog">
-        <img src="<%= blog.thumbnail %>" alt="thumbnail" />
-        <small class="blog__category"
-          ><%= blog.category.charAt(0).toUpperCase() + blog.category.slice(1)
-          %></small
-        >
-        <h4><%= blog.title %></h4>
-        <small class="author"
-          ><strong>Author :</strong> <%= blog.author.name %></small
-        >
-        <a href="/blogs/<%= blog._id%>">Read Blog</a>
-        <small
-          >Posted on : <%= new Date(blog.createdAt).toLocaleString() %></small
-        >
-      </div>
-      <% }); %>
+      <% locals.blogs.forEach(blog => { %> <%-
+      include('./partials/blogCard.ejs', { blog }) %> <% }); %>
     </div>
   </div>
 

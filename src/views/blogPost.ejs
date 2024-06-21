@@ -12,7 +12,7 @@
       <img src="<%= locals.blog.thumbnail %>" alt="thumbnail" />
       <h4><%= locals.blog.title %></h4>
       <pre><%= locals.blog.content %></pre>
-      <small><strong>Category :</strong> <%= locals.blog.category %></small>
+      <small><strong>Category :</strong> <%= locals.blog.category.charAt(0).toUpperCase() + locals.blog.category.slice(1)%></small>
       <small>
         <strong>Posted on :</strong>
         <%= new Date(locals.blog.createdAt).toLocaleString() %></small
