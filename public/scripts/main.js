@@ -1,32 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const deleteForms = document.querySelectorAll("#deleteForm");
-  deleteForms.forEach((form) => {
-    form.addEventListener("submit", async function (event) {
-      event.preventDefault();
-      const confirmation = confirm(
-        "Are you sure you want to delete this blog post?"
-      );
-      if (confirmation) {
-        try {
-          const response = await fetch(this.action, {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-          if (!response.ok) {
-            throw new Error("Failed to delete blog post");
-          }
-          window.location.href = "/dashboard";
-        } catch (error) {
-          console.error("Error deleting blog post:", error.message);
-          alert("Failed to delete blog post");
-        }
-      }
-    });
-  });
-});
-
+// Handle mobile nav show/hide on mobile 
 const mobile__nav__trigger = document.querySelector("#mobile__nav__trigger");
 
 mobile__nav__trigger.addEventListener("click", () => {
@@ -41,6 +13,8 @@ close__mobile__nav.addEventListener("click", () => {
   mobile__nav.style.left = "100%";
 });
 
+
+// Preview thumbnail image on creating new blog 
 var loadFile = function (event) {
   document.querySelector(".add__blog__container .preview").style.display =
     "block";
@@ -51,6 +25,8 @@ var loadFile = function (event) {
   };
 };
 
+
+// Fetch blog categories for desktop nav 
 async function fetchCategories() {
   try {
     const response = await fetch("/categories");
@@ -72,6 +48,7 @@ async function fetchCategories() {
 
 fetchCategories();
 
+// Fetch blog categories for mobile nav 
 async function fetchMobCategories() {
   try {
     const response = await fetch("/categories");
@@ -93,6 +70,7 @@ async function fetchMobCategories() {
 
 fetchMobCategories();
 
+// Handle categories show/hide on mobile 
 const mobCatTrigger = document.querySelector('#mob_cat_trigger')
 mobCatTrigger.addEventListener('click', () => {
   const catBox = document.querySelector(".categories__box");

@@ -1,20 +1,38 @@
 <div class="page__wrapper">
   <%- include('./partials/header.ejs', {title: 'Signup'}) %>
-<div class="auth__container">
-  <form action="/auth/signup" method="post" class="auth__form">
-    <h1>Join BeeLog!</h1>
-    <small><%= locals.msg %></small>
-    <label for="name">Name</label>
-    <input type="text" name="name" id="name" required placeholder="Name (Required)"/>
-    <label for="email">Email</label>
-    <input type="email" name="email" id="email" required placeholder="Email (Required)"/>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required placeholder="Password (Required)"/>
-    <input type="hidden" name="role" value="user" />
-    <button type="submit">Signup</button>
-    <a href="/login" class="auth__link">Have an Account? Login Here</a>
-  </form>
-</div>
+  <div class="auth__container">
+    <form action="/auth/signup" method="post" class="auth__form">
+      <h1>Join BeeLog!</h1>
+      <small><%= locals.msg %></small>
+      <label for="name">Name</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        required
+        placeholder="Name (Required)"
+      />
+      <label for="email">Email</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        required
+        placeholder="Email (Required)"
+      />
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        required
+        placeholder="Password (Required)"
+      />
+      <input type="hidden" name="role" value="user" />
+      <button type="submit">Signup</button>
+      <a href="/login" class="auth__link">Have an Account? Login Here</a>
+    </form>
+  </div>
 
-<%- include('./partials/footer.ejs') %>
+  <%- include('./partials/footer.ejs') %>
 </div>
