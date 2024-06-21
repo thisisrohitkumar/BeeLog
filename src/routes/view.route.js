@@ -1,112 +1,40 @@
 const express = require("express");
+const router = express.Router();
 const {
   checkAuthenticity,
   checkIfUserLoggedIn,
 } = require("../middlewares/checkAuthenticity");
-const { checkAuthority } = require("../middlewares/checkAuthority");
-const { verifyToken } = require("../services/auth.service");
-const Blog = require("../models/blog.model");
-const User = require("../models/user.model");
-const Bookmark = require("../models/bookmark.model");
-const router = express.Router();
+const {
+  renderSignupPage,
+  renderVerifyPage,
+  renderLoginPage,
+  renderProfilePage,
+  renderBookmarksPage,
+  createNewBookmark,
+  renderDashboardPage,
+  renderAddNewBlogPage,
+  getAllCategories,
+  renderHomePage,
+} = require("../controllers/view.controller");
 
-router.get("/", async (req, res) => {
-  const token = req.cookies["jwt"];
-  if (!token) {
-    return res.render("home");
-  }
-  const user = await verifyToken(token);
-  return res.render("home", { user });
-});
+router.get("/", renderHomePage);
 
-router.get("/signup", checkAuthenticity, (req, res) => {
-  return res.render("signup");
-});
+router.get("/signup", checkAuthenticity, renderSignupPage);
 
-router.get("/verify", checkAuthenticity, (req, res) => {
-  return res.render("verify");
-});
+router.get("/verify", checkAuthenticity, renderVerifyPage);
 
-router.get("/login", checkAuthenticity, (req, res) => {
-  return res.render("login");
-});
+router.get("/login", checkAuthenticity, renderLoginPage);
 
-router.get('/categories', async (req, res) => {
-  try {
-    const categories = await Blog.distinct('category');
-    res.json(categories);
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
-})
+router.get("/dashboard", checkIfUserLoggedIn, renderDashboardPage);
 
-router.get("/dashboard", checkIfUserLoggedIn, async (req, res) => {
-  const token = req.cookies["jwt"];
-  if (!token) {
-    return res.render("home");
-  }
-  const user = await verifyToken(token);
-  const blogs = await Blog.find({ author: user.id })
-    .populate("author")
-    .sort([["createdAt", -1]]);
-  return res.render("dashboard", { user, blogs });
-});
+router.get("/bookmarks", checkIfUserLoggedIn, renderBookmarksPage);
 
-router.get("/bookmarks", checkIfUserLoggedIn, async (req, res) => {
-  const token = req.cookies["jwt"];
-  if (!token) {
-    return res.render("home");
-  }
-  const user = await verifyToken(token);
-  const bookmarks = await Bookmark.find({ userId: user.id })
-  .populate({
-    path: 'blogId',
-    populate: {
-      path: 'author',
-      model: 'User',
-      select: 'name'
-    }
-  })
-    .sort([["createdAt", -1]]);
-  return res.render("bookmarks", { user, bookmarks });
-});
+router.post("/bookmarks", checkIfUserLoggedIn, createNewBookmark);
 
-router.post("/bookmarks", checkIfUserLoggedIn, async (req, res) => {
-  const token = req.cookies["jwt"];
-  if (!token) {
-    return res.render("home");
-  }
+router.get("/profile", checkIfUserLoggedIn, renderProfilePage);
 
-  const { blogId } = req.body;
-  const user = await verifyToken(token);
+router.get("/addBlog", checkIfUserLoggedIn, renderAddNewBlogPage);
 
-  const alreadyBookmarked = await Bookmark.findOne({ userId: user.id, blogId });
-
-  if (alreadyBookmarked) {
-    return res.render("home", { user, msg: "Already Bookmarked!" });
-  }
-
-  await Bookmark.create({ userId: user.id, blogId });
-  return res.render("home", { user, msg: "Successfully Bookmarked!" });
-});
-
-router.get("/profile", checkIfUserLoggedIn, async (req, res) => {
-  const token = req.cookies["jwt"];
-  if (!token) {
-    return res.render("home");
-  }
-  const user = await verifyToken(token);
-  const userDetails = await User.findOne({ _id: user.id });
-  return res.render("profile", { user, userDetails });
-});
-
-router.get("/addBlog", checkIfUserLoggedIn, async (req, res) => {
-  const token = req.cookies["jwt"];
-  if (!token) {
-    return res.render("home");
-  }
-  const user = await verifyToken(token);
-  return res.render("addBlog", { user });
-});
+router.get("/categories", getAllCategories);
 
 module.exports = router;

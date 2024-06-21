@@ -13,9 +13,9 @@ const storage = multer.diskStorage({
       const uniqueSuffix = Date.now();
       cb(null, uniqueSuffix + '-' + file.originalname);
     }
-  });
+});
   
-  const upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
 
 router.post('/', checkIfUserLoggedIn, upload.single('thumbnail'), createNewBlog)
 router.get('/', getAllBlogs)

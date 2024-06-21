@@ -1,12 +1,10 @@
 const Comment = require("../models/comment.model");
 const { verifyToken } = require("../services/auth.service");
 
-const getAllComments = async (req, res) => {};
-
 const getCommentsByBlogId = async (req, res) => {
-  const { id } = req.params;
+  const { blogId } = req.params;
   try {
-    const comments = await Comment.find({ blogId: id });
+    const comments = await Comment.find({ blogId });
     return res.send(comments);
   } catch (error) {}
 };
@@ -30,7 +28,6 @@ const createNewComment = async (req, res) => {
 };
 
 module.exports = {
-  getAllComments,
   getCommentsByBlogId,
   createNewComment,
 };
