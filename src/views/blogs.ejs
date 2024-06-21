@@ -2,7 +2,11 @@
   <%- include('./partials/header.ejs', {title: 'Blogs', user: locals.user}) %>
 
 <div class="blogs__container">
-  <h3>All Blogs (<%= locals.blogs.length %>)</h3>
+  <h3>All
+    <% if(locals.category){ %>
+    <%= locals.category.charAt(0).toUpperCase() + locals.category.slice(1) %>
+    <% } %> 
+    Blogs (<%= locals.blogs.length %>)</h3>
   <div class="blogs">
     <% locals.blogs.forEach(blog => { %>
       <div class="blog">

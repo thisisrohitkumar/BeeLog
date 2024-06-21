@@ -2,58 +2,6 @@
   <span>Made in India with &#x1F5A4;</span>
   <span>&copy; BeeLog - 2024 | All Rights Reserved</span>
 </footer>
-<script>
-    var loadFile = function(event) {
-      document.querySelector('.add__blog__container .preview').style.display="block"
-      var output = document.getElementById('output');
-      output.src = URL.createObjectURL(event.target.files[0]);
-      output.onload = function() {
-        URL.revokeObjectURL(output.src) // free memory
-      }
-    };
-    </script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-      const deleteForms = document.querySelectorAll('#deleteForm');
-      deleteForms.forEach(form => {
-        form.addEventListener('submit', async function(event) {
-          event.preventDefault();
-          const confirmation = confirm('Are you sure you want to delete this blog post?');
-          if (confirmation) {
-            try {
-              const response = await fetch(this.action, {
-                method: 'DELETE',
-                headers: {
-                  'Content-Type': 'application/json'
-                }
-              });
-              if (!response.ok) {
-                throw new Error('Failed to delete blog post');
-              }
-              window.location.href = '/dashboard'; 
-            } catch (error) {
-              console.error('Error deleting blog post:', error.message);
-              alert('Failed to delete blog post');
-            }
-          }
-        });
-      });
-    });
-
-    const mobile__nav__trigger = document.querySelector('#mobile__nav__trigger');
-
-    mobile__nav__trigger.addEventListener('click', () => {
-      const mobile__nav = document.querySelector('.mobile__nav');
-      mobile__nav.style.left = "0";
-    });
-
-    const close__mobile__nav = document.querySelector('.close__nav');
-
-    close__mobile__nav.addEventListener('click', () => {
-  const mobile__nav = document.querySelector('.mobile__nav');
-  mobile__nav.style.left = "100%";
-});
-</script>
+<script src="/scripts/main.js"></script>
 </body>
 </html>

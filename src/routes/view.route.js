@@ -31,6 +31,15 @@ router.get("/login", checkAuthenticity, (req, res) => {
   return res.render("login");
 });
 
+router.get('/categories', async (req, res) => {
+  try {
+    const categories = await Blog.distinct('category');
+    res.json(categories);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+})
+
 router.get("/dashboard", checkIfUserLoggedIn, async (req, res) => {
   const token = req.cookies["jwt"];
   if (!token) {

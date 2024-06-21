@@ -7,10 +7,11 @@ const getAllBlogs = async (req, res) => {
   const token = req.cookies["jwt"];
   const user = await verifyToken(token);
   try {
-    const blogs = await Blog.find({})
+    const query = req.query;
+    const blogs = await Blog.find(query)
       .populate("author")
       .sort([["createdAt", -1]]);
-    return res.render("blogs", { blogs, user });
+    return res.render("blogs", { blogs, user, category: query.category });
   } catch (error) {
     console.log(error);
   }

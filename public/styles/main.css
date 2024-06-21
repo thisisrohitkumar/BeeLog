@@ -72,6 +72,10 @@ nav ul li {
   display: none;
 }
 
+.categories__box{
+  display: none;
+}
+
 #mobile__nav__trigger {
   display: none;
 }
@@ -80,7 +84,20 @@ nav ul li {
   position: relative;
   cursor: pointer;
 }
+.cat__drop {
+  position: relative;
+  cursor: pointer;
+}
 
+.cat__drop ul {
+  display: none;
+  gap: 5px;
+  flex-direction: column;
+  background-color: #ffffff;
+  position: absolute;
+  right: -15px;
+  padding-top: 10px;
+}
 .dropdown ul {
   display: none;
   flex-direction: column;
@@ -91,12 +108,28 @@ nav ul li {
   padding-top: 10px;
 }
 
+.cat__drop ul li a {
+  display: block;
+  padding: 8px 16px;
+  text-align: right;
+  width: 100%;
+  min-width: 150px;
+}
+
 .dropdown ul li a {
   display: block;
   padding: 8px 16px;
   text-align: right;
   width: 100%;
   min-width: 150px;
+}
+
+.cat__drop ul li:hover {
+  background-color: #f4bd20;
+}
+
+.cat__drop:hover ul {
+  display: flex;
 }
 
 .dropdown ul li:hover {
