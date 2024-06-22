@@ -124,6 +124,9 @@ nav ul li {
   position: absolute;
   right: -15px;
   padding-top: 10px;
+  min-height: fit-content;
+  max-height: calc(100vh - 200px);
+  overflow-y: scroll;
 }
 
 .cat__drop ul li a {
