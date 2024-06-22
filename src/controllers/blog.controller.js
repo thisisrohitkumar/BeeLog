@@ -1,3 +1,6 @@
+const fs = require("fs");
+const bucket = require("../config/firebaseConfig");
+const path = require("path");
 const Blog = require("../models/blog.model");
 const Comment = require("../models/comment.model");
 
@@ -38,21 +41,35 @@ const getBlogById = async (req, res) => {
 
 const createNewBlog = async (req, res) => {
   const { title, content, category } = req.body;
+  const file = req.file;
   const token = req.cookies["jwt"];
   const user = await verifyToken(token);
   try {
-    let thumbnail;
-    if (req.file) {
-      thumbnail = `/uploads/${req.file.filename}`;
+    const filename = file.filename;
+    const tempFilePath = path.join(file.destination, file.filename);
+
+    // Verify the file exists
+    if (!fs.existsSync(tempFilePath)) {
+      throw new Error("File not found");
     }
+
+    // Upload the thumbnail to Firebase Storage
+    await bucket.upload(tempFilePath, {
+      destination: `thumbnails/${filename}`,
+      public: true,
+    });
+    const fileUrl = `https://storage.googleapis.com/${bucket.name}/thumbnails/${filename}`;
 
     const newBlog = await Blog.create({
       title,
       content,
       category,
-      thumbnail,
+      thumbnail: fileUrl,
       author: user.id,
     });
+
+    // Clean up the temporary file
+    fs.unlinkSync(tempFilePath);
 
     return res.redirect(`/blogs/${newBlog._id}`);
   } catch (error) {
