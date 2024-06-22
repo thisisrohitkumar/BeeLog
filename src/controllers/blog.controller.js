@@ -81,7 +81,8 @@ const createNewBlog = async (req, res) => {
 
 const handleDeleteBlog = async (req, res) => {
   const { id } = req.params;
-
+  const token = req.cookies["jwt"];
+  const user = await verifyToken(token);
   try {
     const blogPost = await Blog.findById(id);
 
@@ -105,10 +106,10 @@ const handleDeleteBlog = async (req, res) => {
     // Delete the thumbnail from Firebase Storage
     await bucket.file(`thumbnails/${filename}`).delete();
 
-    return res.status(200).render('home', { msg: "Blog post deleted successfully" });
+    return res.status(200).render('home', { user, msg: "Blog post deleted successfully" });
   } catch (error) {
     console.error("Error deleting blog post:", error);
-    return res.status(500).render('home', { msg: "Failed to delete blog post" });
+    return res.status(500).render('home', { user, msg: "Failed to delete blog post" });
   }
 };
 
