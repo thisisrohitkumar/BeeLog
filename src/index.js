@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const app = express();
+const methodOverride = require('method-override');
 const PORT = process.env.PORT;
 const cookieParser = require('cookie-parser')
 const connectToDb = require('./config/connect')
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.resolve('./public')))
 app.use(cookieParser())
+app.use(methodOverride('_method'));
 app.use('/users', userRoute)
 app.use('/auth', authRoute)
 app.use('/blogs', blogRoute)

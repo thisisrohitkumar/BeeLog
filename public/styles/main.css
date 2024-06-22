@@ -462,6 +462,24 @@ footer {
   font-size: 1rem;
 }
 
+/* Delete styles  */
+.delete__form{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.delete__form button {
+  padding: 10px 10px;
+  background-color: #ff0000;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
 /* Bookmark styles  */
 .bookmark__form {
   position: absolute;
@@ -472,6 +490,7 @@ footer {
 .bookmark__form button {
   padding: 10px 20px;
   background-color: #f4bd20;
+  color: #000000;
   border: none;
   outline: none;
   cursor: pointer;
@@ -492,6 +511,7 @@ footer {
 .bookmark__form__2 button {
   padding: 10px 10px;
   background-color: #f4bd20;
+  color: #000000;
   border: none;
   outline: none;
   cursor: pointer;

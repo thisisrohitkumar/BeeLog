@@ -1,4 +1,15 @@
 <div class="blog">
+  <% if(locals.type === "admin"){ %>
+  <form
+    action="/blogs/<%= blog._id %>?_method=DELETE"
+    method="POST"
+    onsubmit="return confirm('Are you sure you want to delete this blog post?');"
+    class="delete__form"
+    title="Delete"
+  >
+    <button type="submit"><i class="fa-solid fa-trash"></i></button>
+  </form>
+  <% } else{ %>
   <form
     action="/bookmarks"
     method="post"
@@ -8,6 +19,7 @@
     <input type="hidden" name="blogId" value="<%= blog._id %>" />
     <button type="submit"><i class="fa-solid fa-bookmark"></i></button>
   </form>
+  <% } %>
   <img src="<%= blog.thumbnail %>" alt="thumbnail" />
   <small class="blog__category"
     ><%= blog.category.charAt(0).toUpperCase() + blog.category.slice(1)

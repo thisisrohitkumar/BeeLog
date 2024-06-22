@@ -6,7 +6,7 @@
     <h3>Blogs Published (<%= locals.blogs.length %>)</h3>
     <div class="blogs">
       <% locals.blogs.forEach(blog => { %> <%-
-      include('./partials/blogCard.ejs', { blog }) %> <% }); %>
+      include('./partials/blogCard.ejs', { blog, type: "admin" }) %> <% }); %>
     </div>
   </div>
 
