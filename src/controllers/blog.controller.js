@@ -3,6 +3,7 @@ const bucket = require("../config/firebaseConfig");
 const path = require("path");
 const Blog = require("../models/blog.model");
 const Comment = require("../models/comment.model");
+const Bookmark = require("../models/bookmark.model");
 
 const { verifyToken } = require("../services/auth.service");
 
@@ -91,6 +92,12 @@ const handleDeleteBlog = async (req, res) => {
     // Extract the filename from the thumbnail URL
     const thumbnailUrl = blogPost.thumbnail;
     const filename = thumbnailUrl.split("/").pop();
+
+    // Delete all the comments related to this blog 
+    await Comment.deleteMany({blogId: id});
+
+    // Delete all the bookmarks related to this blog
+    await Bookmark.deleteMany({blogId: id});
 
     // Delete the blog post from the database
     await Blog.findByIdAndDelete(id);
