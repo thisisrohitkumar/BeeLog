@@ -1,5 +1,8 @@
 <div class="blog">
   <% if(locals.role === "author"){ %>
+  <a class="edit__blog__btn" href="/blogs/<%= blog._id %>/edit" title="Edit Blog"
+    ><i class="fa-solid fa-pen-square"></i
+  ></a>
   <form
     action="/blogs/<%= blog._id %>?_method=DELETE"
     method="POST"
@@ -10,7 +13,7 @@
     <button type="submit"><i class="fa-solid fa-trash"></i></button>
   </form>
   <% } else if(locals.isBook){ %>
-    <form
+  <form
     action="/bookmarks/<%= locals.bookId %>?_method=DELETE"
     method="post"
     class="bookmark__form__2"
@@ -29,7 +32,7 @@
     <button type="submit"><i class="fa-regular fa-bookmark"></i></button>
   </form>
   <% } %>
-  <img src="<%= blog.thumbnail %>" alt="thumbnail" loading="lazy"/>
+  <img src="<%= blog.thumbnail %>" alt="thumbnail" loading="lazy" />
   <small class="blog__category"
     ><%= blog.category.charAt(0).toUpperCase() + blog.category.slice(1)
     %></small

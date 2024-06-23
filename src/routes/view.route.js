@@ -16,6 +16,7 @@ const {
   renderAddNewBlogPage,
   getAllCategories,
   renderHomePage,
+  renderEditBlogPage
 } = require("../controllers/view.controller");
 
 router.get("/", renderHomePage);
@@ -39,5 +40,7 @@ router.get("/profile", checkIfUserLoggedIn, renderProfilePage);
 router.get("/addBlog", checkIfUserLoggedIn, renderAddNewBlogPage);
 
 router.get("/categories", getAllCategories);
+
+router.get('/blogs/:id/edit', checkIfUserLoggedIn, renderEditBlogPage);
 
 module.exports = router;

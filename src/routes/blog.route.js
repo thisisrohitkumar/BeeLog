@@ -7,6 +7,7 @@ const {
   getAllBlogs,
   getBlogById,
   handleDeleteBlog,
+  handleEditBlog,
 } = require("../controllers/blog.controller");
 
 const storage = multer.diskStorage({
@@ -30,5 +31,11 @@ router.post(
 );
 router.get("/", getAllBlogs);
 router.get("/:id", getBlogById);
+router.post(
+  "/:id/edit",
+  checkIfUserLoggedIn,
+  upload.single("thumbnail"),
+  handleEditBlog
+);
 
 module.exports = router;

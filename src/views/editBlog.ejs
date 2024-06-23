@@ -1,0 +1,88 @@
+<div class="page__wrapper">
+  <%- include('./partials/header.ejs', {title: "Edit Blog", user: locals.user})
+  %>
+  <div class="add__blog__container">
+    <form 
+      action="/blogs/<%= locals.blog._id %>/edit" 
+      method="post" 
+      enctype="multipart/form-data"
+    >
+      <h3>Edit Blog</h3>
+      <label for="title">Title</label>
+      <input
+        type="text"
+        name="title"
+        required
+        placeholder="Title (Required)"
+        value="<%= locals.blog.title %>"
+      />
+      <label for="content">Content</label>
+      <textarea
+        name="content"
+        required
+        placeholder="Write your thoughts here... (Required)"
+      ><%= locals.blog.content %></textarea>
+      <label for="category">Category</label>
+      <select name="category" required>
+        <option value="" disabled>~ Select a category ~</option>
+        <option value="art" <%= locals.blog.category === "art" ? "selected" : "" %>>Art</option>
+        <option value="automotive" <%= locals.blog.category === "automotive" ? "selected" : "" %>>Automotive</option>
+        <option value="books" <%= locals.blog.category === "books" ? "selected" : "" %>>Books</option>
+        <option value="business" <%= locals.blog.category === "business" ? "selected" : "" %>>Business</option>
+        <option value="career" <%= locals.blog.category === "career" ? "selected" : "" %>>Career</option>
+        <option value="diy" <%= locals.blog.category === "diy" ? "selected" : "" %>>DIY</option>
+        <option value="education" <%= locals.blog.category === "education" ? "selected" : "" %>>Education</option>
+        <option value="entertainment" <%= locals.blog.category === "entertainment" ? "selected" : "" %>>Entertainment</option>
+        <option value="environment" <%= locals.blog.category === "environment" ? "selected" : "" %>>Environment</option>
+        <option value="events" <%= locals.blog.category === "events" ? "selected" : "" %>>Events</option>
+        <option value="fashion" <%= locals.blog.category === "fashion" ? "selected" : "" %>>Fashion</option>
+        <option value="finance" <%= locals.blog.category === "finance" ? "selected" : "" %>>Finance</option>
+        <option value="fitness" <%= locals.blog.category === "fitness" ? "selected" : "" %>>Fitness</option>
+        <option value="food" <%= locals.blog.category === "food" ? "selected" : "" %>>Food</option>
+        <option value="gardening" <%= locals.blog.category === "gardening" ? "selected" : "" %>>Gardening</option>
+        <option value="gaming" <%= locals.blog.category === "gaming" ? "selected" : "" %>>Gaming</option>
+        <option value="health" <%= locals.blog.category === "health" ? "selected" : "" %>>Health</option>
+        <option value="history" <%= locals.blog.category === "history" ? "selected" : "" %>>History</option>
+        <option value="hobbies" <%= locals.blog.category === "hobbies" ? "selected" : "" %>>Hobbies</option>
+        <option value="home" <%= locals.blog.category === "home" ? "selected" : "" %>>Home</option>
+        <option value="movies" <%= locals.blog.category === "movies" ? "selected" : "" %>>Movies</option>
+        <option value="music" <%= locals.blog.category === "music" ? "selected" : "" %>>Music</option>
+        <option value="marketing" <%= locals.blog.category === "marketing" ? "selected" : "" %>>Marketing</option>
+        <option value="miscellaneous" <%= locals.blog.category === "miscellaneous" ? "selected" : "" %>>Miscellaneous</option>
+        <option value="news" <%= locals.blog.category === "news" ? "selected" : "" %>>News</option>
+        <option value="non-profit" <%= locals.blog.category === "non-profit" ? "selected" : "" %>>Non-Profit</option>
+        <option value="parenting" <%= locals.blog.category === "parenting" ? "selected" : "" %>>Parenting</option>
+        <option value="personal" <%= locals.blog.category === "personal" ? "selected" : "" %>>Personal</option>
+        <option value="pets" <%= locals.blog.category === "pets" ? "selected" : "" %>>Pets</option>
+        <option value="photography" <%= locals.blog.category === "photography" ? "selected" : "" %>>Photography</option>
+        <option value="politics" <%= locals.blog.category === "politics" ? "selected" : "" %>>Politics</option>
+        <option value="productivity" <%= locals.blog.category === "productivity" ? "selected" : "" %>>Productivity</option>
+        <option value="real-estate" <%= locals.blog.category === "real-estate" ? "selected" : "" %>>Real Estate</option>
+        <option value="relationships" <%= locals.blog.category === "relationships" ? "selected" : "" %>>Relationships</option>
+        <option value="science" <%= locals.blog.category === "science" ? "selected" : "" %>>Science</option>
+        <option value="self-improvement" <%= locals.blog.category === "self-improvement" ? "selected" : "" %>>Self-Improvement</option>
+        <option value="social-media" <%= locals.blog.category === "social-media" ? "selected" : "" %>>Social Media</option>
+        <option value="spirituality" <%= locals.blog.category === "spirituality" ? "selected" : "" %>>Spirituality</option>
+        <option value="sports" <%= locals.blog.category === "sports" ? "selected" : "" %>>Sports</option>
+        <option value="technology" <%= locals.blog.category === "technology" ? "selected" : "" %>>Technology</option>
+        <option value="travel" <%= locals.blog.category === "travel" ? "selected" : "" %>>Travel</option>
+        <option value="writing" <%= locals.blog.category === "writing" ? "selected" : "" %>>Writing</option>
+        <option value="psychology" <%= locals.blog.category === "psychology" ? "selected" : "" %>>Psychology</option>
+        <option value="religion" <%= locals.blog.category === "religion" ? "selected" : "" %>>Religion</option>
+      </select>
+
+      <label for="thumbnail">Thumbnail</label>
+      <input
+        type="file"
+        name="thumbnail"
+        accept="image/*"
+        onchange="loadFile2(event)"
+      />
+      <img id="output2" class="preview2" src="<%= locals.blog.thumbnail %>" alt="Thumbnail Preview" />
+      <button type="submit">Update Blog</button>
+    </form>
+
+  </div>
+
+  <%- include('./partials/footer.ejs') %>
+</div>

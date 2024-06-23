@@ -8,7 +8,7 @@ const renderHomePage = async (req, res) => {
   if (!token) {
     return res.render("home");
   }
-  
+
   const user = await verifyToken(token);
 
   if (!user) {
@@ -83,9 +83,9 @@ const deleteBookmark = async (req, res) => {
       .render("home", { user, msg: "~ Bookmark deleted successfully ~" });
   } catch (error) {
     console.log(error);
-    res.render("home", { user, msg: "~ Failed to delete bookmark ~" })
+    res.render("home", { user, msg: "~ Failed to delete bookmark ~" });
   }
-}
+};
 
 const renderProfilePage = async (req, res) => {
   const user = req.user;
@@ -115,6 +115,21 @@ const getAllCategories = async (req, res) => {
   }
 };
 
+const renderEditBlogPage = async (req, res) => {
+  const blogId = req.params.id;
+  const user = req.user;
+  try {
+    const blog = await Blog.findById({ _id: blogId }).populate("author");
+    if (!blog) {
+      return res.status(404).send("Blog not found");
+    }
+    res.render("editBlog", { blog, user });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
 module.exports = {
   renderHomePage,
   renderSignupPage,
@@ -127,4 +142,5 @@ module.exports = {
   createNewBookmark,
   deleteBookmark,
   getAllCategories,
+  renderEditBlogPage,
 };

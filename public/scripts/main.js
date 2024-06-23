@@ -25,6 +25,15 @@ var loadFile = function (event) {
   };
 };
 
+// Preview thumbnail image on edit blog 
+var loadFile2 = function (event) {
+  var output2 = document.getElementById("output2");
+  output2.src = URL.createObjectURL(event.target.files[0]);
+  output2.onload = function () {
+    URL.revokeObjectURL(output2.src); // free memory
+  };
+};
+
 
 // Fetch blog categories for desktop nav 
 async function fetchCategories() {

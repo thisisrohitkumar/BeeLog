@@ -125,9 +125,68 @@ const handleDeleteBlog = async (req, res) => {
   }
 };
 
+const handleEditBlog = async (req, res) => {
+  const { title, content, category } = req.body;
+  const file = req.file;
+  const user = req.user;
+  const blogId = req.params.id;
+
+  try {
+    const blog = await Blog.findById({ _id: blogId });
+    if (!blog) {
+      return res.status(404).send("Blog not found");
+    }
+
+    if (blog.author.toString() !== user.id.toString()) {
+      return res.status(403).send("Forbidden");
+    }
+
+    let fileUrl = blog.thumbnail;
+
+    if (file) {
+      const filename = file.filename;
+      const tempFilePath = path.join(file.destination, file.filename);
+
+      // Verify the file exists
+      if (!fs.existsSync(tempFilePath)) {
+        throw new Error("File not found");
+      }
+
+      // Delete the old thumbnail from Firebase Storage if it exists
+      if (fileUrl) {
+        const oldFilename = fileUrl.split('/').pop();
+        await bucket.file(`thumbnails/${oldFilename}`).delete();
+      }
+
+      // Upload the new thumbnail to Firebase Storage
+      await bucket.upload(tempFilePath, {
+        destination: `thumbnails/${filename}`,
+        public: true,
+      });
+      fileUrl = `https://storage.googleapis.com/${bucket.name}/thumbnails/${filename}`;
+
+      // Clean up the temporary file
+      fs.unlinkSync(tempFilePath);
+    }
+
+    blog.title = title || blog.title;
+    blog.content = content || blog.content;
+    blog.category = category || blog.category;
+    blog.thumbnail = fileUrl;
+
+    await blog.save();
+
+    return res.redirect(`/blogs/${blog._id}`);
+  } catch (error) {
+    console.log(error);
+    return res.send("Internal server error");
+  }
+};
+
 module.exports = {
   getAllBlogs,
   getBlogById,
   createNewBlog,
   handleDeleteBlog,
+  handleEditBlog,
 };

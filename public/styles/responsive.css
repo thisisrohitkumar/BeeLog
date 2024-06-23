@@ -126,6 +126,10 @@
   .add__blog__container .preview {
     width: 100%;
   }
+
+  .add__blog__container .preview2 {
+    width: 100%;
+  }
 }
 
 /* For Mobile Screens - Landscape */
