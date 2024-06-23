@@ -116,7 +116,7 @@ const handleDeleteBlog = async (req, res) => {
 
     return res
       .status(200)
-      .render("home", { user, msg: "Blog post deleted successfully" });
+      .render("home", { user, msg: "~ Blog post deleted successfully! ~" });
   } catch (error) {
     console.error("Error deleting blog post:", error);
     return res

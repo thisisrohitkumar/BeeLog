@@ -1,15 +1,24 @@
 <div class="blog">
-  <% if(locals.type === "admin"){ %>
+  <% if(locals.role === "author"){ %>
   <form
     action="/blogs/<%= blog._id %>?_method=DELETE"
     method="POST"
     onsubmit="return confirm('Are you sure you want to delete this blog post?');"
     class="delete__form"
-    title="Delete"
+    title="Delete Blog"
   >
     <button type="submit"><i class="fa-solid fa-trash"></i></button>
   </form>
-  <% } else{ %>
+  <% } else if(locals.isBook){ %>
+    <form
+    action="/bookmarks/<%= locals.bookId %>?_method=DELETE"
+    method="post"
+    class="bookmark__form__2"
+    title="Remove Bookmark"
+  >
+    <button type="submit"><i class="fa-solid fa-bookmark"></i></button>
+  </form>
+  <%} else{ %>
   <form
     action="/bookmarks"
     method="post"
@@ -17,7 +26,7 @@
     title="Bookmark"
   >
     <input type="hidden" name="blogId" value="<%= blog._id %>" />
-    <button type="submit"><i class="fa-solid fa-bookmark"></i></button>
+    <button type="submit"><i class="fa-regular fa-bookmark"></i></button>
   </form>
   <% } %>
   <img src="<%= blog.thumbnail %>" alt="thumbnail" loading="lazy"/>

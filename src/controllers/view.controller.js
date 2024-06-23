@@ -67,6 +67,26 @@ const createNewBookmark = async (req, res) => {
   }
 };
 
+const deleteBookmark = async (req, res) => {
+  const { id } = req.params;
+  const user = req.user;
+  try {
+    const bookmark = await Bookmark.findById(id);
+
+    if (!bookmark) {
+      return res.status(404).json({ error: "Bookmark does not exists" });
+    }
+
+    await Bookmark.findByIdAndDelete(id);
+    return res
+      .status(200)
+      .render("home", { user, msg: "~ Bookmark deleted successfully ~" });
+  } catch (error) {
+    console.log(error);
+    res.render("home", { user, msg: "~ Failed to delete bookmark ~" })
+  }
+}
+
 const renderProfilePage = async (req, res) => {
   const user = req.user;
   const userDetails = await User.findOne({ _id: user.id });
@@ -105,5 +125,6 @@ module.exports = {
   renderDashboardPage,
   renderAddNewBlogPage,
   createNewBookmark,
+  deleteBookmark,
   getAllCategories,
 };

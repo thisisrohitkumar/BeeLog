@@ -11,6 +11,7 @@ const {
   renderProfilePage,
   renderBookmarksPage,
   createNewBookmark,
+  deleteBookmark,
   renderDashboardPage,
   renderAddNewBlogPage,
   getAllCategories,
@@ -30,6 +31,8 @@ router.get("/dashboard", checkIfUserLoggedIn, renderDashboardPage);
 router.get("/bookmarks", checkIfUserLoggedIn, renderBookmarksPage);
 
 router.post("/bookmarks", checkIfUserLoggedIn, createNewBookmark);
+
+router.delete("/bookmarks/:id", checkIfUserLoggedIn, deleteBookmark);
 
 router.get("/profile", checkIfUserLoggedIn, renderProfilePage);
 

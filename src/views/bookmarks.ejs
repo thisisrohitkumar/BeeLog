@@ -6,7 +6,8 @@
     <h3>Bookmarks (<%= locals.bookmarks.length %>)</h3>
     <div class="blogs">
       <% locals.bookmarks.forEach(bookmark => { %> <%-
-      include('./partials/blogCard.ejs', { blog: bookmark.blogId }) %> <% }); %>
+      include('./partials/blogCard.ejs', { blog: bookmark.blogId, isBook:true, bookId: bookmark._id })
+      %> <% }); %>
     </div>
   </div>
 
