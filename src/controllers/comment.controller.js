@@ -1,5 +1,4 @@
 const Comment = require("../models/comment.model");
-const { verifyToken } = require("../services/auth.service");
 
 const getCommentsByBlogId = async (req, res) => {
   const { blogId } = req.params;
@@ -11,8 +10,7 @@ const getCommentsByBlogId = async (req, res) => {
 
 const createNewComment = async (req, res) => {
   const { comment, blogId } = req.body;
-  const token = req.cookies["jwt"];
-  const user = await verifyToken(token);
+  const user = req.user;
 
   try {
     await Comment.create({

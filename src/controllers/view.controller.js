@@ -8,7 +8,13 @@ const renderHomePage = async (req, res) => {
   if (!token) {
     return res.render("home");
   }
+  
   const user = await verifyToken(token);
+
+  if (!user) {
+    return res.render("home", { msg: "~ Invalid Token! ~" });
+  }
+
   return res.render("home", { user });
 };
 
@@ -25,11 +31,7 @@ const renderLoginPage = (req, res) => {
 };
 
 const renderBookmarksPage = async (req, res) => {
-  const token = req.cookies["jwt"];
-  if (!token) {
-    return res.render("home");
-  }
-  const user = await verifyToken(token);
+  const user = req.user;
   const bookmarks = await Bookmark.find({ userId: user.id })
     .populate({
       path: "blogId",
@@ -44,40 +46,35 @@ const renderBookmarksPage = async (req, res) => {
 };
 
 const createNewBookmark = async (req, res) => {
-  const token = req.cookies["jwt"];
-  if (!token) {
-    return res.render("home");
-  }
-
   const { blogId } = req.body;
-  const user = await verifyToken(token);
+  const user = req.user;
 
-  const alreadyBookmarked = await Bookmark.findOne({ userId: user.id, blogId });
+  try {
+    const alreadyBookmarked = await Bookmark.findOne({
+      userId: user.id,
+      blogId,
+    });
 
-  if (alreadyBookmarked) {
-    return res.render("home", { user, msg: "Already Bookmarked!" });
+    if (alreadyBookmarked) {
+      return res.render("home", { user, msg: "Already Bookmarked!" });
+    }
+
+    await Bookmark.create({ userId: user.id, blogId });
+    return res.render("home", { user, msg: "Successfully Bookmarked!" });
+  } catch (error) {
+    console.log(error);
+    return res.render("home", { user, msg: "Failed to Bookmark!" });
   }
-
-  await Bookmark.create({ userId: user.id, blogId });
-  return res.render("home", { user, msg: "Successfully Bookmarked!" });
 };
 
 const renderProfilePage = async (req, res) => {
-  const token = req.cookies["jwt"];
-  if (!token) {
-    return res.render("home");
-  }
-  const user = await verifyToken(token);
+  const user = req.user;
   const userDetails = await User.findOne({ _id: user.id });
   return res.render("profile", { user, userDetails });
 };
 
 const renderDashboardPage = async (req, res) => {
-  const token = req.cookies["jwt"];
-  if (!token) {
-    return res.render("home");
-  }
-  const user = await verifyToken(token);
+  const user = req.user;
   const blogs = await Blog.find({ author: user.id })
     .populate("author")
     .sort([["createdAt", -1]]);
@@ -85,11 +82,7 @@ const renderDashboardPage = async (req, res) => {
 };
 
 const renderAddNewBlogPage = async (req, res) => {
-  const token = req.cookies["jwt"];
-  if (!token) {
-    return res.render("home");
-  }
-  const user = await verifyToken(token);
+  const user = req.user;
   return res.render("addBlog", { user });
 };
 

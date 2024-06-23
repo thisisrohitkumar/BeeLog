@@ -23,6 +23,7 @@ const verifyToken = async (token) => {
         return payload;
     } catch (error) {
         console.log(error);
+        return null;
     }
 }
 
