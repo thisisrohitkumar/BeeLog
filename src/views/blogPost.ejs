@@ -9,7 +9,7 @@
           <i class="fa-solid fa-bookmark"></i> Bookmark
         </button>
       </form>
-      <img src="<%= locals.blog.thumbnail %>" alt="thumbnail" />
+      <img src="<%= locals.blog.thumbnail %>" alt="thumbnail" loading="lazy"/>
       <h4><%= locals.blog.title %></h4>
       <pre><%= locals.blog.content %></pre>
       <small><strong>Category :</strong> <%= locals.blog.category.charAt(0).toUpperCase() + locals.blog.category.slice(1)%></small>

@@ -20,7 +20,7 @@
     <button type="submit"><i class="fa-solid fa-bookmark"></i></button>
   </form>
   <% } %>
-  <img src="<%= blog.thumbnail %>" alt="thumbnail" />
+  <img src="<%= blog.thumbnail %>" alt="thumbnail" loading="lazy"/>
   <small class="blog__category"
     ><%= blog.category.charAt(0).toUpperCase() + blog.category.slice(1)
     %></small
