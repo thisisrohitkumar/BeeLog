@@ -2,18 +2,20 @@
   <%- include('./partials/header.ejs', {title: "Add Blog", user: locals.user})
   %>
   <div class="add__blog__container">
-    <form action="/blogs" method="post" enctype="multipart/form-data">
+    <form action="/blogs" method="post" enctype="multipart/form-data" onsubmit="return validateAddNewBlogForm()">
       <h3>Write New Blog</h3>
       <label for="title">Title</label>
-      <input type="text" name="title" required placeholder="Title (Required)" />
+      <input type="text" name="title" id="title" placeholder="Title (Required)" />
+      <p class="error" id="title_error"></p>
       <label for="content">Content</label>
       <textarea
         name="content"
-        required
+        id="content"
         placeholder="Write your thoughts here... (Required)"
       ></textarea>
+      <p class="error" id="content_error"></p>
       <label for="category">Category</label>
-      <select name="category" id="" required>
+      <select name="category" id="category">
         <option value="" selected disabled>~ Select a category ~</option>
         <option value="art">Art</option>
         <option value="automotive">Automotive</option>
@@ -60,15 +62,16 @@
         <option value="psychology">Psychology</option>
         <option value="religion">Religion</option>
       </select>
-
+      <p class="error" id="category_error"></p>
       <label for="thumbnail">Thumbnail</label>
       <input
         type="file"
         name="thumbnail"
         accept="image/*"
         onchange="loadFile(event)"
-        required
+        id="thumbnail"
       />
+      <p class="error" id="thumbnail_error"></p>
       <img id="output" class="preview" />
       <button type="submit">Publish Blog</button>
     </form>

@@ -421,6 +421,17 @@ footer {
   object-fit: cover;
 }
 
+.add__blog__container p {
+  width: 100%;
+  text-align: right;
+  font-size: 0.8rem;
+}
+
+.add__blog__container .error{
+  color: #ff0000;
+  margin-top: -5px;
+}
+
 /* Blog Details Page styles  */
 .blog__details__container {
   width: 80%;
