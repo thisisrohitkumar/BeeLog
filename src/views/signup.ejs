@@ -1,7 +1,7 @@
 <div class="page__wrapper">
   <%- include('./partials/header.ejs', {title: 'Signup'}) %>
   <div class="auth__container">
-    <form action="/auth/signup" method="post" class="auth__form">
+    <form action="/auth/signup" method="post" class="auth__form" onsubmit="return validateSignupForm()">
       <h1>Join BeeLog!</h1>
       <small><%= locals.msg %></small>
       <label for="name">Name</label>
@@ -9,25 +9,25 @@
         type="text"
         name="name"
         id="name"
-        required
         placeholder="Name (Required)"
       />
+      <p class="error" id="name_error"></p>
       <label for="email">Email</label>
       <input
-        type="email"
+        type="text"
         name="email"
         id="email"
-        required
         placeholder="Email (Required)"
       />
+      <p class="error" id="email_error"></p>
       <label for="password">Password</label>
       <input
         type="password"
         name="password"
         id="password"
-        required
         placeholder="Password (Required)"
       />
+      <p class="error" id="password_error"></p>
       <input type="hidden" name="role" value="user" />
       <button type="submit">Signup</button>
       <a href="/login" class="auth__link">Have an Account? Login Here</a>

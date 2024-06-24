@@ -324,6 +324,15 @@ footer {
   width: 100%;
 }
 
+.auth__form .error{
+  color: #ff0000;
+  margin-top: -10px !important;
+}
+
+.auth__form .reset__password{
+  text-align: left !important;
+}
+
 /* Add Blog Styles  */
 .add__blog__container {
   width: 80%;

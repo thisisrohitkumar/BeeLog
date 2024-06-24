@@ -92,3 +92,78 @@ closeMobCat.addEventListener("click", () => {
   const catBox = document.querySelector(".categories__box");
   catBox.style.left = "100%";
 });
+
+// Validate Email
+function validateEmail(email) {
+  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailPattern.test(email);
+}
+
+// Validate login form 
+const validateLoginForm = () => {
+  const email = document.querySelector('#email');
+  const password = document.querySelector('#password');
+
+  const emailError = document.querySelector('#email_error');
+  const passwordError = document.querySelector('#password_error');
+
+  emailError.innerHTML = '';
+  passwordError.innerHTML = '';
+
+  let isValid = true;
+
+  if(email.value === ''){
+    emailError.innerHTML = 'Email is required!';
+    isValid = false;
+  }else if(!validateEmail(email.value)){
+    emailError.innerHTML = 'Invalid email!';
+    isValid = false;
+  }
+
+  if(password.value === ''){
+    passwordError.innerHTML = 'Password is required!';
+    isValid = false;
+  }
+
+  return isValid;
+};
+
+// Validate login form 
+const validateSignupForm = () => {
+  const name = document.querySelector('#name');
+  const email = document.querySelector('#email');
+  const password = document.querySelector('#password');
+
+  const nameError = document.querySelector('#name_error');
+  const emailError = document.querySelector('#email_error');
+  const passwordError = document.querySelector('#password_error');
+
+  nameError.innerHTML = '';
+  emailError.innerHTML = '';
+  passwordError.innerHTML = '';
+
+  let isValid = true;
+
+  if(name.value === ''){
+    nameError.innerHTML = 'Name is required!';
+    isValid = false;
+  }
+
+  if(email.value === ''){
+    emailError.innerHTML = 'Email is required!';
+    isValid = false;
+  }else if(!validateEmail(email.value)){
+    emailError.innerHTML = 'Invalid email!';
+    isValid = false;
+  }
+
+  if(password.value === ''){
+    passwordError.innerHTML = 'Password is required!';
+    isValid = false;
+  }else if(password.value.length < 8){
+    passwordError.innerHTML = 'Min. password length is 8';
+    isValid = false;
+  }
+
+  return isValid;
+};

@@ -1,26 +1,31 @@
 <div class="page__wrapper">
   <%- include('./partials/header.ejs', {title: 'Login'}) %>
   <div class="auth__container">
-    <form action="/auth/login" method="post" class="auth__form">
+    <form
+      action="/auth/login"
+      method="post"
+      class="auth__form"
+      onsubmit="return validateLoginForm()"
+    >
       <h1>Welcome Back!</h1>
       <small><%= locals.msg %></small>
       <label for="email">Email</label>
       <input
-        type="email"
+        type="text"
         name="email"
         id="email"
-        required
         placeholder="Email (Required)"
       />
+      <p class="error" id="email_error"></p>
       <label for="password">Password</label>
       <input
         type="password"
         name="password"
         id="password"
-        required
         placeholder="Password (Required)"
       />
-      <p>Reset Password?</p>
+      <p class="error" id="password_error"></p>
+      <p class="reset__password">Reset Password?</p>
       <button type="submit">Login</button>
       <a href="/signup" class="auth__link">Create an Account</a>
     </form>
