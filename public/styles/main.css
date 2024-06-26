@@ -362,11 +362,24 @@ footer {
 }
 
 .add__blog__container form {
-  width: 500px;
+  width: 100%;
   margin: auto;
   padding: 20px;
   border: 1px solid #000000;
   background-color: #ffffff;
+}
+
+.add__blog__container #editor{
+  margin-bottom: 10px;
+  min-height: 300px;
+  border: 1px solid #000000;
+  outline: none;
+  resize: vertical;
+}
+
+.add__blog__container #editor p{
+  text-align: left !important;
+  font-size: 1rem;
 }
 
 .add__blog__container h3 {
@@ -387,6 +400,8 @@ footer {
   padding: 8px 12px;
   font-size: 1rem;
   margin-bottom: 10px;
+  border: 1px solid #000000;
+  outline: none;
 }
 .add__blog__container select {
   display: block;
@@ -394,6 +409,8 @@ footer {
   padding: 8px 12px;
   font-size: 1rem;
   margin-bottom: 10px;
+  border: 1px solid #000000;
+  outline: none;
 }
 
 .add__blog__container textarea {

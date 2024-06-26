@@ -174,6 +174,7 @@ const validateAddNewBlogForm = () => {
   const content = document.querySelector('#content');
   const category = document.querySelector('#category');
   const thumbnail = document.querySelector('#thumbnail');
+  const quillContent = quill.getSemanticHTML();
 
   const titleError = document.querySelector('#title_error');
   const contentError = document.querySelector('#content_error');
@@ -195,13 +196,21 @@ const validateAddNewBlogForm = () => {
     isValid = false;
   }
 
-  if(content.value === ''){
+  if(quillContent === '<p></p>'){
     contentError.innerHTML = 'Content is required!';
     isValid = false;
-  }else if(content.value.length > 500){
-    contentError.innerHTML = 'Max. length 500 characters!';
-    isValid = false;
+  }else{
+    content.value = quillContent;
+    console.log(content.value);
   }
+
+  // if(content.value === ''){
+  //   contentError.innerHTML = 'Content is required!';
+  //   isValid = false;
+  // }else if(content.value.length > 500){
+  //   contentError.innerHTML = 'Max. length 500 characters!';
+  //   isValid = false;
+  // }
 
   if(category.value === ''){
     categoryError.innerHTML = 'Category is required!';
@@ -215,3 +224,33 @@ const validateAddNewBlogForm = () => {
 
   return isValid;
 };
+
+// Custom text editor 
+
+const toolbarOptions = [
+  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+  ['blockquote', 'code-block'],
+  ['link', 'image', 'video', 'formula'],
+
+  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+  [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
+  [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+  [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+  [{ 'direction': 'rtl' }],                         // text direction
+
+  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+  [{ 'font': [] }],
+  [{ 'align': [] }],
+
+  ['clean'] 
+];
+
+const quill = new Quill('#editor', {
+  modules:{
+    toolbar: toolbarOptions,
+  },
+  theme: 'snow',
+  placeholder: 'Start writing from here...',
+});
