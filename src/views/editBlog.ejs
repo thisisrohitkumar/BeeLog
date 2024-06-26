@@ -6,6 +6,7 @@
       action="/blogs/<%= locals.blog._id %>/edit" 
       method="post" 
       enctype="multipart/form-data"
+      onsubmit="return validateEditBlogForm()"
     >
       <h3>Edit Blog</h3>
       <label for="title">Title</label>
@@ -17,11 +18,14 @@
         value="<%= locals.blog.title %>"
       />
       <label for="content">Content</label>
+      <div id="editor">
+        <%- locals.blog.content %>
+      </div>
       <textarea
         name="content"
-        required
-        placeholder="Write your thoughts here... (Required)"
-      ><%= locals.blog.content %></textarea>
+        id="content"
+        style="display: none;"
+      ></textarea>
       <label for="category">Category</label>
       <select name="category" required>
         <option value="" disabled>~ Select a category ~</option>
