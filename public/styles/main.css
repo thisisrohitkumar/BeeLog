@@ -29,6 +29,22 @@ a {
   padding-top: 80px;
 }
 
+/* Custom scrollbar  */
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f7f7f7;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #f4bd20;
+}
+
 /* Header styles  */
 header {
   position: fixed;
