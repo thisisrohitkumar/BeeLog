@@ -55,12 +55,17 @@ const createNewBookmark = async (req, res) => {
       blogId,
     });
 
+    const query = req.query;
+    const blogs = await Blog.find(query)
+      .populate("author")
+      .sort([["createdAt", -1]]);
+
     if (alreadyBookmarked) {
-      return res.render("home", { user, msg: "Already Bookmarked!" });
+      return res.render("blogs", { user, blogs,category: query.category, msg: "Already Bookmarked!" });
     }
 
     await Bookmark.create({ userId: user.id, blogId });
-    return res.render("home", { user, msg: "Successfully Bookmarked!" });
+    return res.render("blogs", { user, blogs, category: query.category, msg: "Successfully Bookmarked!" });
   } catch (error) {
     console.log(error);
     return res.render("home", { user, msg: "Failed to Bookmark!" });
@@ -77,10 +82,24 @@ const deleteBookmark = async (req, res) => {
       return res.status(404).json({ error: "Bookmark does not exists" });
     }
 
+    
+
     await Bookmark.findByIdAndDelete(id);
+
+    const bookmarks = await Bookmark.find({ userId: user.id })
+    .populate({
+      path: "blogId",
+      populate: {
+        path: "author",
+        model: "User",
+        select: "name",
+      },
+    })
+    .sort([["createdAt", -1]]);
+
     return res
       .status(200)
-      .render("home", { user, msg: "~ Bookmark deleted successfully ~" });
+      .render("bookmarks", { user, bookmarks, msg: "~ Bookmark deleted successfully ~" });
   } catch (error) {
     console.log(error);
     res.render("home", { user, msg: "~ Failed to delete bookmark ~" });
