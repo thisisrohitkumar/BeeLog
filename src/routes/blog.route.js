@@ -6,6 +6,7 @@ const {
   createNewBlog,
   getAllBlogs,
   getBlogById,
+  getBlogBySlug,
   handleDeleteBlog,
   handleEditBlog,
 } = require("../controllers/blog.controller");
@@ -31,6 +32,7 @@ router.post(
 );
 router.get("/", getAllBlogs);
 router.get("/:id", getBlogById);
+router.get("/:slug", getBlogBySlug);
 router.post(
   "/:id/edit",
   checkIfUserLoggedIn,

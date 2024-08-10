@@ -1,6 +1,7 @@
 const fs = require("fs");
 const bucket = require("../config/firebaseConfig");
 const path = require("path");
+const slugify = require('slugify');
 const Blog = require("../models/blog.model");
 const Comment = require("../models/comment.model");
 const Bookmark = require("../models/bookmark.model");
@@ -36,8 +37,32 @@ const getBlogById = async (req, res) => {
   }
 
   try {
-    const blog = await Blog.findById({ _id: id }).populate("author");
-    const comments = await Comment.find({ blogId: id }).populate("userId");
+    const blog = await Blog.findById({ _id: id });
+
+    if (!blog) {
+      return res.render("home", { msg: "~ Blog not found ~" });
+    } else {
+      return res.redirect(`/blogs/${blog.slug}`);
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send("Internal server error");
+  }
+};
+
+const getBlogBySlug = async (req, res) => {
+  const { slug } = req.params;
+  const token = req.cookies["jwt"];
+  let user = null;
+
+  if (token) {
+    user = await verifyToken(token);
+  }
+
+  try {
+    // Find the blog post by slug
+    const blog = await Blog.findOne({ slug }).populate("author");
+    const comments = await Comment.find({ blogId: blog ? blog._id : null }).populate("userId");
 
     if (!blog) {
       return res.render("home", { msg: "~ Blog not found ~" });
@@ -50,8 +75,13 @@ const getBlogById = async (req, res) => {
   }
 };
 
+const generateSlug = (title) => {
+  return slugify(title, { lower: true, strict: true });
+}
+
 const createNewBlog = async (req, res) => {
   const { title, content, category } = req.body;
+  const slug = generateSlug(title);
   const file = req.file;
   const user = req.user;
   try {
@@ -72,6 +102,7 @@ const createNewBlog = async (req, res) => {
 
     const newBlog = await Blog.create({
       title,
+      slug,
       content,
       category,
       thumbnail: fileUrl,
@@ -191,6 +222,7 @@ const handleEditBlog = async (req, res) => {
 module.exports = {
   getAllBlogs,
   getBlogById,
+  getBlogBySlug,
   createNewBlog,
   handleDeleteBlog,
   handleEditBlog,
