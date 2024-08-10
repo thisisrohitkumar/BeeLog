@@ -3,6 +3,7 @@
   %>
 
   <div class="dashboard__container">
+    <section style="text-align: center;"><%= locals.msg %></section>
     <h3>Blogs Published (<%= locals.blogs.length %>)</h3>
     <div class="blogs">
       <% locals.blogs.forEach(blog => { %> <%-

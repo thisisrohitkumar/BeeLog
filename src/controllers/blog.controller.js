@@ -92,6 +92,7 @@ const handleDeleteBlog = async (req, res) => {
   const { id } = req.params;
   const user = req.user;
   try {
+
     const blogPost = await Blog.findById(id);
 
     if (!blogPost) {
@@ -114,9 +115,13 @@ const handleDeleteBlog = async (req, res) => {
     // Delete the thumbnail from Firebase Storage
     await bucket.file(`thumbnails/${filename}`).delete();
 
+    const blogs = await Blog.find({ author: user.id })
+    .populate("author")
+    .sort([["createdAt", -1]]);
+
     return res
       .status(200)
-      .render("home", { user, msg: "~ Blog post deleted successfully! ~" });
+      .render("dashboard", { blogs, user, msg: "~ Blog post deleted successfully! ~" });
   } catch (error) {
     console.error("Error deleting blog post:", error);
     return res
