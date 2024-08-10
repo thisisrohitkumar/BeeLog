@@ -32,7 +32,7 @@ router.post(
 );
 router.get("/", getAllBlogs);
 router.get("/:id", getBlogById);
-router.get("/:slug", getBlogBySlug);
+router.get("/post/:slug", getBlogBySlug);
 router.post(
   "/:id/edit",
   checkIfUserLoggedIn,

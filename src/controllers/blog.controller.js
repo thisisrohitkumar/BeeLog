@@ -42,7 +42,7 @@ const getBlogById = async (req, res) => {
     if (!blog) {
       return res.render("home", { msg: "~ Blog not found ~" });
     } else {
-      return res.redirect(`/blogs/${blog.slug}`);
+      return res.redirect(`/blogs/post/${blog.slug}`);
     }
   } catch (error) {
     console.log(error);
@@ -112,7 +112,7 @@ const createNewBlog = async (req, res) => {
     // Clean up the temporary file
     fs.unlinkSync(tempFilePath);
 
-    return res.redirect(`/blogs/${newBlog._id}`);
+    return res.redirect(`/blogs/post/${newBlog.slug}`);
   } catch (error) {
     console.log(error);
     return res.send("Internal server error");
