@@ -24,6 +24,7 @@ const handleSendOpt = async (req, res) => {
     res.status(500).json({ msg: "Error sending OTP", error: error.message });
   }
 };
+
 const handleVerifyOtp = async (req, res) => {
   const { email, otp } = req.body;
 

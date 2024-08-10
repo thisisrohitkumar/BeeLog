@@ -225,31 +225,8 @@ const validateAddNewBlogForm = () => {
   return isValid;
 };
 const validateEditBlogForm = () => {
-  // const title = document.querySelector('#title');
   const content = document.querySelector('#content');
-  // const category = document.querySelector('#category');
-  // const thumbnail = document.querySelector('#thumbnail');
   const quillContent = quill.getSemanticHTML();
-
-  // const titleError = document.querySelector('#title_error');
-  // const contentError = document.querySelector('#content_error');
-  // const categoryError = document.querySelector('#category_error');
-  // const thumbnailError = document.querySelector('#thumbnail_error');
-
-  // titleError.innerHTML = '';
-  // contentError.innerHTML = '';
-  // categoryError.innerHTML = '';
-  // thumbnailError.innerHTML = '';
-
-  // let isValid = true;
-
-  // if(title.value === ''){
-  //   titleError.innerHTML = 'Title is required!';
-  //   isValid = false;
-  // }else if(title.value.length > 100){
-  //   titleError.innerHTML = 'Max. length 100 characters!';
-  //   isValid = false;
-  // }
 
   if(quillContent === '<p></p>'){
     contentError.innerHTML = 'Content is required!';
@@ -258,24 +235,6 @@ const validateEditBlogForm = () => {
     content.value = quillContent;
     console.log(content.value);
   }
-
-  // if(content.value === ''){
-  //   contentError.innerHTML = 'Content is required!';
-  //   isValid = false;
-  // }else if(content.value.length > 500){
-  //   contentError.innerHTML = 'Max. length 500 characters!';
-  //   isValid = false;
-  // }
-
-  // if(category.value === ''){
-  //   categoryError.innerHTML = 'Category is required!';
-  //   isValid = false;
-  // }
-
-  // if(thumbnail.value === ''){
-  //   thumbnailError.innerHTML = 'Thumbnail is required!';
-  //   isValid = false;
-  // }
 
   return isValid;
 };
