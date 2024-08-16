@@ -20,7 +20,7 @@ const getAllBlogs = async (req, res) => {
     const query = req.query;
     const blogs = await Blog.find(query)
       .populate("author")
-      .sort([["createdAt", -1]]);
+      .sort([["updatedAt", -1]]);
     return res.render("blogs", { blogs, user, category: query.category });
   } catch (error) {
     console.log(error);
@@ -148,7 +148,7 @@ const handleDeleteBlog = async (req, res) => {
 
     const blogs = await Blog.find({ author: user.id })
     .populate("author")
-    .sort([["createdAt", -1]]);
+    .sort([["updatedAt", -1]]);
 
     return res
       .status(200)

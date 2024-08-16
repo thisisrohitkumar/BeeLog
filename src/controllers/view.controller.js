@@ -41,7 +41,7 @@ const renderBookmarksPage = async (req, res) => {
         select: "name",
       },
     })
-    .sort([["createdAt", -1]]);
+    .sort([["updatedAt", -1]]);
   return res.render("bookmarks", { user, bookmarks });
 };
 
@@ -58,7 +58,7 @@ const createNewBookmark = async (req, res) => {
     const query = req.query;
     const blogs = await Blog.find(query)
       .populate("author")
-      .sort([["createdAt", -1]]);
+      .sort([["updatedAt", -1]]);
 
     if (alreadyBookmarked) {
       return res.render("blogs", { user, blogs,category: query.category, msg: "Already Bookmarked!" });
@@ -95,7 +95,7 @@ const deleteBookmark = async (req, res) => {
         select: "name",
       },
     })
-    .sort([["createdAt", -1]]);
+    .sort([["updatedAt", -1]]);
 
     return res
       .status(200)
@@ -116,7 +116,7 @@ const renderDashboardPage = async (req, res) => {
   const user = req.user;
   const blogs = await Blog.find({ author: user.id })
     .populate("author")
-    .sort([["createdAt", -1]]);
+    .sort([["updatedAt", -1]]);
   return res.render("dashboard", { user, blogs });
 };
 

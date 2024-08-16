@@ -14,8 +14,8 @@
       <pre><%- locals.blog.content %></pre>
       <small><strong>Category :</strong> <%= locals.blog.category.charAt(0).toUpperCase() + locals.blog.category.slice(1)%></small>
       <small>
-        <strong>Posted on :</strong>
-        <%= new Date(locals.blog.createdAt).toLocaleString() %></small
+        <strong>Last updated :</strong>
+        <%= new Date(locals.blog.updatedAt).toLocaleString() %></small
       >
       <small><strong>Author :</strong> <%= locals.blog.author.name %></small>
     </div>
@@ -30,7 +30,7 @@
         <div class="comment__user__text">
           <div class="comment__user">
             <%= pcomment.userId.name %><em
-              ><%= new Date(pcomment.createdAt).toLocaleString() %></em
+              ><%= new Date(pcomment.updatedAt).toLocaleString() %></em
             >
           </div>
           <div class="comment__text"><%= pcomment.comment %></div>

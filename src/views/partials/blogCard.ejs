@@ -42,5 +42,5 @@
     ><strong>Author :</strong> <%= blog.author.name %></small
   >
   <a href="/blogs/<%= blog._id%>">Read Blog</a>
-  <small>Posted on : <%= new Date(blog.createdAt).toLocaleString() %></small>
+  <small>Last updated : <%= new Date(blog.updatedAt).toLocaleString() %></small>
 </div>
