@@ -163,6 +163,7 @@ const handleDeleteBlog = async (req, res) => {
 
 const handleEditBlog = async (req, res) => {
   const { title, content, category } = req.body;
+  const slug = generateSlug(title);
   const file = req.file;
   const user = req.user;
   const blogId = req.params.id;
@@ -206,6 +207,7 @@ const handleEditBlog = async (req, res) => {
     }
 
     blog.title = title || blog.title;
+    blog.slug = slug || blog.slug;
     blog.content = content || blog.content;
     blog.category = category || blog.category;
     blog.thumbnail = fileUrl;
