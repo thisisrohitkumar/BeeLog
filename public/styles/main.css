@@ -484,13 +484,14 @@ footer {
   position: relative;
 }
 
-.blog__details img {
+.blog__details .blog__thumbnail {
   width: 100%;
   height: 500px;
   object-fit: cover;
+  object-position: center top;
 }
 
-.blog__details h4 {
+.blog__details .blog__title {
   width: 100%;
   margin: -5px auto 0 auto;
   font-size: 2rem;
@@ -498,7 +499,7 @@ footer {
   background-color: #f4bd20;
 }
 
-.blog__details pre {
+.blog__details .blog__content {
   width: 100%;
   text-align: left;
   hyphens: auto;
@@ -512,6 +513,28 @@ footer {
   padding: 20px 30px;
   font-size: 1.2rem;
   font-family: "Montserrat", sans-serif;
+  line-height: 30px;
+}
+
+.blog__content p{
+  margin-bottom: 20px;
+}
+
+.blog__content ul, .blog__content ol{
+  margin-left: 20px;
+}
+
+.blog__content li{
+  margin-bottom: 10px;
+}
+
+.blog__content img{
+  width: 500px;
+}
+
+.blog__content h1, .blog__content h2, .blog__content h3, .blog__content h4, .blog__content h5, .blog__content h6{
+  margin-block: 50px !important;
+  text-align: center;
 }
 
 .blog__details small {
@@ -613,7 +636,7 @@ footer {
 .comment {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
   margin-bottom: 20px;
 }
 

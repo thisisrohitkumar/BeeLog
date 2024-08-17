@@ -96,16 +96,26 @@
     width: 90%;
   }
 
-  .blog__details img {
+  .blog__details .blog__thumbnail {
     height: 250px;
   }
 
-  .blog__details h4 {
+  .blog__details .blog__title {
     padding: 20px;
   }
 
-  .blog__details pre {
+  .blog__details .blog__content {
     padding: 20px;
+  }
+
+  .blog__content img{
+    width: 100%;
+  }
+
+  .blog__content h1, .blog__content h2, .blog__content h3, .blog__content h4, .blog__content h5, .blog__content h6{
+    margin-block: 30px !important;
+    text-align: center;
+    line-height: 50px;
   }
 
   .blog__details small {
