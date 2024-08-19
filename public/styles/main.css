@@ -545,6 +545,25 @@ footer {
   font-size: 1rem;
 }
 
+.share__btn{
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  
+  background-color: #000000;
+  color: #f7f7f7;
+  border: none;
+  outline: none;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 /* Edit blog styles  */
 .edit__blog__btn{
   position: absolute;

@@ -1,3 +1,26 @@
+//share a blog button
+const shareBtn = document.querySelector('.share__btn');
+shareBtn.addEventListener('click', () => {
+    const postTitle = document.title;
+    const postUrl = window.location.href;
+
+    // Check if Web Share API is supported
+    if (navigator.share) {
+        navigator.share({
+            title: postTitle,
+            url: postUrl
+        }).then(() => {
+            console.log('Post shared successfully!');
+        }).catch((error) => {
+            console.error('Error sharing:', error);
+        });
+    } else {
+        // Fallback for browsers that do not support Web Share API
+        let whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(postTitle)} - ${encodeURIComponent(postUrl)}`;
+        window.open(whatsappUrl, '_blank');
+    }
+})
+
 // Handle mobile nav show/hide on mobile 
 const mobile__nav__trigger = document.querySelector("#mobile__nav__trigger");
 
@@ -268,3 +291,5 @@ const quill = new Quill('#editor', {
   theme: 'snow',
   placeholder: 'Start writing from here...',
 });
+
+

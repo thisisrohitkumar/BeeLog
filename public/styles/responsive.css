@@ -140,6 +140,11 @@
   .add__blog__container .preview2 {
     width: 100%;
   }
+
+  .share__btn{
+    bottom: 80px;
+    right: 20px;
+  }
 }
 
 /* For Mobile Screens - Landscape */
@@ -262,6 +267,11 @@
     margin-left: 0;
     margin-bottom: 20px;
     width: fit-content;
+  }
+
+  .share__btn{
+    bottom: 80px;
+    right: 20px;
   }
 
   .comment__details {

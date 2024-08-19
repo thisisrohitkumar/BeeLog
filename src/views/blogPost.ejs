@@ -18,6 +18,11 @@
         <%= new Date(locals.blog.updatedAt).toLocaleString() %></small
       >
       <small><strong>Author :</strong> <%= locals.blog.author.name %></small>
+      
+      <div class="share__btn">
+        <i class="fa-regular fa-share-from-square"></i>
+        Share
+      </div>
     </div>
 
     <div class="comment__details">
@@ -54,6 +59,8 @@
       </form>
     </div>
     <% } %>
+
+    
   </div>
   <%- include('./partials/footer.ejs') %>
 </div>
