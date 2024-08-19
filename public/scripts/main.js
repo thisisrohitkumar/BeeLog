@@ -1,5 +1,21 @@
+
+// Handle mobile nav show/hide on mobile 
+const mobile__nav__trigger = document.querySelector("#mobile__nav__trigger");
+
+mobile__nav__trigger.addEventListener("click", () => {
+  const mobile__nav = document.querySelector(".mobile__nav");
+  mobile__nav.style.left = "0";
+});
+
+const close__mobile__nav = document.querySelector(".close__nav");
+
+close__mobile__nav.addEventListener("click", () => {
+  const mobile__nav = document.querySelector(".mobile__nav");
+  mobile__nav.style.left = "100%";
+});
+
 //share a blog button
-const shareBtn = document.querySelector('.share__btn');
+const shareBtn = document.querySelector(".share__btn");
 shareBtn.addEventListener('click', () => {
     const postTitle = document.title;
     const postUrl = window.location.href;
@@ -21,20 +37,6 @@ shareBtn.addEventListener('click', () => {
     }
 })
 
-// Handle mobile nav show/hide on mobile 
-const mobile__nav__trigger = document.querySelector("#mobile__nav__trigger");
-
-mobile__nav__trigger.addEventListener("click", () => {
-  const mobile__nav = document.querySelector(".mobile__nav");
-  mobile__nav.style.left = "0";
-});
-
-const close__mobile__nav = document.querySelector(".close__nav");
-
-close__mobile__nav.addEventListener("click", () => {
-  const mobile__nav = document.querySelector(".mobile__nav");
-  mobile__nav.style.left = "100%";
-});
 
 
 // Preview thumbnail image on creating new blog 
@@ -291,5 +293,6 @@ const quill = new Quill('#editor', {
   theme: 'snow',
   placeholder: 'Start writing from here...',
 });
+
 
 
