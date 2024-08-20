@@ -6,3 +6,4 @@
 **Features to Add**
 
 1. Breadcrums
+2. Reactions on blogpost
