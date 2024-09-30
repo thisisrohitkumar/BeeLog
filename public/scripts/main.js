@@ -1,5 +1,4 @@
-
-// Handle mobile nav show/hide on mobile 
+// Handle mobile nav show/hide on mobile
 const mobile__nav__trigger = document.querySelector("#mobile__nav__trigger");
 
 mobile__nav__trigger.addEventListener("click", () => {
@@ -16,30 +15,37 @@ close__mobile__nav.addEventListener("click", () => {
 
 //share a blog button
 const shareBtn = document.querySelector(".share__btn");
-shareBtn.addEventListener('click', () => {
+if (shareBtn) {
+  shareBtn.addEventListener("click", () => {
+    console.log("lauda lassan starts");
     const postTitle = document.title;
     const postUrl = window.location.href;
 
     // Check if Web Share API is supported
     if (navigator.share) {
-        navigator.share({
-            title: postTitle,
-            url: postUrl
-        }).then(() => {
-            console.log('Post shared successfully!');
-        }).catch((error) => {
-            console.error('Error sharing:', error);
+      navigator
+        .share({
+          title: postTitle,
+          url: postUrl,
+        })
+        .then(() => {
+          console.log("Post shared successfully!");
+        })
+        .catch((error) => {
+          console.error("Error sharing:", error);
         });
     } else {
-        // Fallback for browsers that do not support Web Share API
-        let whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(postTitle)} - ${encodeURIComponent(postUrl)}`;
-        window.open(whatsappUrl, '_blank');
+      // Fallback for browsers that do not support Web Share API
+      let whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(
+        postTitle
+      )} - ${encodeURIComponent(postUrl)}`;
+      window.open(whatsappUrl, "_blank");
     }
-})
+    console.log("lauda lassan end");
+  });
+}
 
-
-
-// Preview thumbnail image on creating new blog 
+// Preview thumbnail image on creating new blog
 var loadFile = function (event) {
   document.querySelector(".add__blog__container .preview").style.display =
     "block";
@@ -50,7 +56,7 @@ var loadFile = function (event) {
   };
 };
 
-// Preview thumbnail image on edit blog 
+// Preview thumbnail image on edit blog
 var loadFile2 = function (event) {
   var output2 = document.getElementById("output2");
   output2.src = URL.createObjectURL(event.target.files[0]);
@@ -59,8 +65,7 @@ var loadFile2 = function (event) {
   };
 };
 
-
-// Fetch blog categories for desktop nav 
+// Fetch blog categories for desktop nav
 async function fetchCategories() {
   try {
     const response = await fetch("/categories");
@@ -82,7 +87,7 @@ async function fetchCategories() {
 
 fetchCategories();
 
-// Fetch blog categories for mobile nav 
+// Fetch blog categories for mobile nav
 async function fetchMobCategories() {
   try {
     const response = await fetch("/categories");
@@ -104,12 +109,12 @@ async function fetchMobCategories() {
 
 fetchMobCategories();
 
-// Handle categories show/hide on mobile 
-const mobCatTrigger = document.querySelector('#mob_cat_trigger')
-mobCatTrigger.addEventListener('click', () => {
+// Handle categories show/hide on mobile
+const mobCatTrigger = document.querySelector("#mob_cat_trigger");
+mobCatTrigger.addEventListener("click", () => {
   const catBox = document.querySelector(".categories__box");
   catBox.style.left = "0";
-})
+});
 
 const closeMobCat = document.querySelector(".close__cat");
 
@@ -124,139 +129,132 @@ function validateEmail(email) {
   return emailPattern.test(email);
 }
 
-// Validate login form 
+// Validate login form
 const validateLoginForm = () => {
-  const email = document.querySelector('#email');
-  const password = document.querySelector('#password');
+  const email = document.querySelector("#email");
+  const password = document.querySelector("#password");
 
-  const emailError = document.querySelector('#email_error');
-  const passwordError = document.querySelector('#password_error');
+  const emailError = document.querySelector("#email_error");
+  const passwordError = document.querySelector("#password_error");
 
-  emailError.innerHTML = '';
-  passwordError.innerHTML = '';
+  emailError.innerHTML = "";
+  passwordError.innerHTML = "";
 
   let isValid = true;
 
-  if(email.value === ''){
-    emailError.innerHTML = 'Email is required!';
+  if (email.value === "") {
+    emailError.innerHTML = "Email is required!";
     isValid = false;
-  }else if(!validateEmail(email.value)){
-    emailError.innerHTML = 'Invalid email!';
+  } else if (!validateEmail(email.value)) {
+    emailError.innerHTML = "Invalid email!";
     isValid = false;
   }
 
-  if(password.value === ''){
-    passwordError.innerHTML = 'Password is required!';
+  if (password.value === "") {
+    passwordError.innerHTML = "Password is required!";
     isValid = false;
   }
 
   return isValid;
 };
 
-// Validate login form 
+// Validate login form
 const validateSignupForm = () => {
-  const name = document.querySelector('#name');
-  const email = document.querySelector('#email');
-  const password = document.querySelector('#password');
+  const name = document.querySelector("#name");
+  const email = document.querySelector("#email");
+  const password = document.querySelector("#password");
 
-  const nameError = document.querySelector('#name_error');
-  const emailError = document.querySelector('#email_error');
-  const passwordError = document.querySelector('#password_error');
+  const nameError = document.querySelector("#name_error");
+  const emailError = document.querySelector("#email_error");
+  const passwordError = document.querySelector("#password_error");
 
-  nameError.innerHTML = '';
-  emailError.innerHTML = '';
-  passwordError.innerHTML = '';
+  nameError.innerHTML = "";
+  emailError.innerHTML = "";
+  passwordError.innerHTML = "";
 
   let isValid = true;
 
-  if(name.value === ''){
-    nameError.innerHTML = 'Name is required!';
+  if (name.value === "") {
+    nameError.innerHTML = "Name is required!";
     isValid = false;
   }
 
-  if(email.value === ''){
-    emailError.innerHTML = 'Email is required!';
+  if (email.value === "") {
+    emailError.innerHTML = "Email is required!";
     isValid = false;
-  }else if(!validateEmail(email.value)){
-    emailError.innerHTML = 'Invalid email!';
+  } else if (!validateEmail(email.value)) {
+    emailError.innerHTML = "Invalid email!";
     isValid = false;
   }
 
-  if(password.value === ''){
-    passwordError.innerHTML = 'Password is required!';
+  if (password.value === "") {
+    passwordError.innerHTML = "Password is required!";
     isValid = false;
-  }else if(password.value.length < 8){
-    passwordError.innerHTML = 'Min. password length is 8';
+  } else if (password.value.length < 8) {
+    passwordError.innerHTML = "Min. password length is 8";
     isValid = false;
   }
 
   return isValid;
 };
 
-// Validate Add New Blog Form 
+// Validate Add New Blog Form
 const validateAddNewBlogForm = () => {
-  const title = document.querySelector('#title');
-  const content = document.querySelector('#content');
-  const category = document.querySelector('#category');
-  const thumbnail = document.querySelector('#thumbnail');
+  const title = document.querySelector("#title");
+  const content = document.querySelector("#content");
+  const category = document.querySelector("#category");
+  const thumbnail = document.querySelector("#thumbnail");
   const quillContent = quill.getSemanticHTML();
 
-  const titleError = document.querySelector('#title_error');
-  const contentError = document.querySelector('#content_error');
-  const categoryError = document.querySelector('#category_error');
-  const thumbnailError = document.querySelector('#thumbnail_error');
+  const titleError = document.querySelector("#title_error");
+  const contentError = document.querySelector("#content_error");
+  const categoryError = document.querySelector("#category_error");
+  const thumbnailError = document.querySelector("#thumbnail_error");
 
-  titleError.innerHTML = '';
-  contentError.innerHTML = '';
-  categoryError.innerHTML = '';
-  thumbnailError.innerHTML = '';
+  titleError.innerHTML = "";
+  contentError.innerHTML = "";
+  categoryError.innerHTML = "";
+  thumbnailError.innerHTML = "";
 
   let isValid = true;
 
-  if(title.value === ''){
-    titleError.innerHTML = 'Title is required!';
+  if (title.value === "") {
+    titleError.innerHTML = "Title is required!";
     isValid = false;
-  }else if(title.value.length > 100){
-    titleError.innerHTML = 'Max. length 100 characters!';
+  } else if (title.value.length > 100) {
+    titleError.innerHTML = "Max. length 100 characters!";
     isValid = false;
   }
 
-  if(quillContent === '<p></p>'){
-    contentError.innerHTML = 'Content is required!';
+  if (quillContent === "<p></p>") {
+    contentError.innerHTML = "Content is required!";
     isValid = false;
-  }else{
+  } else {
     content.value = quillContent;
     console.log(content.value);
   }
 
-  // if(content.value === ''){
-  //   contentError.innerHTML = 'Content is required!';
-  //   isValid = false;
-  // }else if(content.value.length > 500){
-  //   contentError.innerHTML = 'Max. length 500 characters!';
-  //   isValid = false;
-  // }
-
-  if(category.value === ''){
-    categoryError.innerHTML = 'Category is required!';
+  if (category.value === "") {
+    categoryError.innerHTML = "Category is required!";
     isValid = false;
   }
 
-  if(thumbnail.value === ''){
-    thumbnailError.innerHTML = 'Thumbnail is required!';
+  if (thumbnail.value === "") {
+    thumbnailError.innerHTML = "Thumbnail is required!";
     isValid = false;
   }
 
   return isValid;
 };
+
 const validateEditBlogForm = () => {
-  const content = document.querySelector('#content');
+  const content = document.querySelector("#content");
   const quillContent = quill.getSemanticHTML();
 
-  if(quillContent === '<p></p>'){
-    contentError.innerHTML = 'Content is required!';
+  if (quillContent === "<p></p>") {
+    contentError.innerHTML = "Content is required!";
     isValid = false;
-  }else{
+  } else {
     content.value = quillContent;
     console.log(content.value);
   }
@@ -264,35 +262,35 @@ const validateEditBlogForm = () => {
   return isValid;
 };
 
-// Custom text editor 
+// Custom text editor
 
 const toolbarOptions = [
-  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-  ['blockquote', 'code-block'],
-  ['link', 'image', 'video', 'formula'],
+  ["bold", "italic", "underline", "strike"], // toggled buttons
+  ["blockquote", "code-block"],
+  ["link", "image", "video", "formula"],
 
-  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-  [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
-  [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-  [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-  [{ 'direction': 'rtl' }],                         // text direction
+  [{ header: 1 }, { header: 2 }], // custom button values
+  [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
+  [{ script: "sub" }, { script: "super" }], // superscript/subscript
+  [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+  [{ direction: "rtl" }], // text direction
 
-  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+  [{ header: [1, 2, 3, 4, 5, 6, false] }],
 
-  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-  [{ 'font': [] }],
-  [{ 'align': [] }],
+  [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+  [{ font: [] }],
+  [{ align: [] }],
 
-  ['clean'] 
+  ["clean"],
 ];
 
-const quill = new Quill('#editor', {
-  modules:{
-    toolbar: toolbarOptions,
-  },
-  theme: 'snow',
-  placeholder: 'Start writing from here...',
-});
-
-
-
+const quillContainer = document.querySelector('#editor');
+if(quillContainer){
+  const quill = new Quill("#editor", {
+    modules: {
+      toolbar: toolbarOptions,
+    },
+    theme: "snow",
+    placeholder: "Start writing from here...",
+  });
+}
