@@ -340,12 +340,12 @@ footer {
   width: 100%;
 }
 
-.auth__form .error{
+.auth__form .error {
   color: #ff0000;
   margin-top: -10px !important;
 }
 
-.auth__form .reset__password{
+.auth__form .reset__password {
   text-align: left !important;
 }
 
@@ -369,7 +369,7 @@ footer {
   background-color: #ffffff;
 }
 
-.add__blog__container #editor{
+.add__blog__container #editor {
   margin-bottom: 10px;
   min-height: 300px;
   border: 1px solid #000000;
@@ -377,7 +377,7 @@ footer {
   resize: vertical;
 }
 
-.add__blog__container #editor p{
+.add__blog__container #editor p {
   text-align: left !important;
   font-size: 1rem;
 }
@@ -460,7 +460,7 @@ footer {
   font-size: 0.8rem;
 }
 
-.add__blog__container .error{
+.add__blog__container .error {
   color: #ff0000;
   margin-top: -5px;
 }
@@ -516,23 +516,29 @@ footer {
   line-height: 30px;
 }
 
-.blog__content p{
+.blog__content p {
   margin-bottom: 20px;
 }
 
-.blog__content ul, .blog__content ol{
+.blog__content ul,
+.blog__content ol {
   margin-left: 20px;
 }
 
-.blog__content li{
+.blog__content li {
   margin-bottom: 10px;
 }
 
-.blog__content img{
+.blog__content img {
   width: 500px;
 }
 
-.blog__content h1, .blog__content h2, .blog__content h3, .blog__content h4, .blog__content h5, .blog__content h6{
+.blog__content h1,
+.blog__content h2,
+.blog__content h3,
+.blog__content h4,
+.blog__content h5,
+.blog__content h6 {
   margin-block: 50px !important;
   text-align: center;
 }
@@ -545,11 +551,11 @@ footer {
   font-size: 1rem;
 }
 
-.share__btn{
+.share__btn {
   position: fixed;
   bottom: 50px;
   right: 50px;
-  
+
   background-color: #000000;
   color: #f7f7f7;
   border: none;
@@ -565,7 +571,7 @@ footer {
 }
 
 /* Edit blog styles  */
-.edit__blog__btn{
+.edit__blog__btn {
   position: absolute;
   top: 15px;
   right: 15px;
@@ -580,7 +586,7 @@ footer {
 }
 
 /* Delete styles  */
-.delete__form{
+.delete__form {
   position: absolute;
   top: 55px;
   right: 15px;

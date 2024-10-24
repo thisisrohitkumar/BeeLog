@@ -1,14 +1,12 @@
 // Handle mobile nav show/hide on mobile
-const mobile__nav__trigger = document.querySelector("#mobile__nav__trigger");
-
-mobile__nav__trigger.addEventListener("click", () => {
-  const mobile__nav = document.querySelector(".mobile__nav");
-  mobile__nav.style.left = "0";
+const mobileNavTrigger = document.querySelector("#mobile__nav__trigger");
+mobileNavTrigger.addEventListener("click", () => {
+  const mobileNav = document.querySelector(".mobile__nav");
+  mobileNav.style.left = "0";
 });
 
-const close__mobile__nav = document.querySelector(".close__nav");
-
-close__mobile__nav.addEventListener("click", () => {
+const closeMobileNav = document.querySelector(".close__nav");
+closeMobileNav.addEventListener("click", () => {
   const mobile__nav = document.querySelector(".mobile__nav");
   mobile__nav.style.left = "100%";
 });
@@ -284,8 +282,8 @@ const toolbarOptions = [
   ["clean"],
 ];
 
-const quillContainer = document.querySelector('#editor');
-if(quillContainer){
+const quillContainer = document.querySelector("#editor");
+if (quillContainer) {
   const quill = new Quill("#editor", {
     modules: {
       toolbar: toolbarOptions,

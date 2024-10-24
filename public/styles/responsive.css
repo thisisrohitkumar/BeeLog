@@ -108,11 +108,16 @@
     padding: 20px;
   }
 
-  .blog__content img{
+  .blog__content img {
     width: 100%;
   }
 
-  .blog__content h1, .blog__content h2, .blog__content h3, .blog__content h4, .blog__content h5, .blog__content h6{
+  .blog__content h1,
+  .blog__content h2,
+  .blog__content h3,
+  .blog__content h4,
+  .blog__content h5,
+  .blog__content h6 {
     margin-block: 30px !important;
     text-align: center;
     line-height: 50px;
@@ -141,7 +146,7 @@
     width: 100%;
   }
 
-  .share__btn{
+  .share__btn {
     bottom: 80px;
     right: 20px;
   }
@@ -269,7 +274,7 @@
     width: fit-content;
   }
 
-  .share__btn{
+  .share__btn {
     bottom: 80px;
     right: 20px;
   }
